@@ -3,6 +3,7 @@
     {
       "name": "Nicolau guedes de paula",
       "email": "nicola@senac.com",
+      "password":"senha@test123",
       "role": "ADMIN",
       "avatar": "",
       "createdAt": "2025-04-24T21:38:39.108Z",
