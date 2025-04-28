@@ -10,6 +10,12 @@
     border-radius: 0%;
     justify-content: space-between;
 }
+
+.sidenav-contet{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
   
 .logo-container{
     padding: 32px;
@@ -25,6 +31,7 @@ mat-nav-list {
     flex-direction: column;
     gap: 12px;
     padding-left: 10px;
+    flex: 1;
 }
 
 .mat-list-item a {
