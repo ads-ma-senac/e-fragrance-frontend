@@ -7,8 +7,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-sidebar',
   standalone:true,
   imports: [MatSidenavModule,
-    MatListModule,
-    RouterModule],
+    MatListModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })

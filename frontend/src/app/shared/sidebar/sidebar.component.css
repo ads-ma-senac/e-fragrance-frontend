@@ -5,7 +5,7 @@
 
 .sidenav{
     display: flex;
-    width: 312px;
+    /* width: 312px; */
     border-right: 1px solid #e0e0e0;
     border-radius: 0%;
     justify-content: space-between;
