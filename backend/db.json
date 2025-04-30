@@ -12,24 +12,25 @@
   ],
   "products": [
     {
+      "id": 1,
       "sku": "CRE-AVE-100M",
-      "name": "Carbon",
-      "brand": "Eudora",
-      "gender": "masculino",
-      "category": 1,
+      "nome": "Carbon",
+      "marca": "Eudora",
+      "genero": "masculino",
+      "categoria": 1,
       "volume": 100,
-      "unitPrice": 150.0,
-      "unitsInStock": 10,
-      "concentration": "Eau de Parfum",
-      "description": "Carbon Turbo de Eudora é um perfume Amadeirado Masculino. Carbon Turbo foi lançada em 2014. Carbon Turbo foi criado por Francisco Marano e Veronica Casanova. As notas de topo são: Tomilho, Hortelã, Cardamomo, Sálvia e Maçã. As notas de coração são: Cedro, Violeta, Lavanda e Noz-moscada. As notas de fundo são: Âmbar, Couro, Baunilha e Segredo Eudora.",
-      "images": [
+      "precoUnidade": 150.0,
+      "unidadeEmEstoque": 10,
+      "concentracao": "Eau de Parfum",
+      "descricaodescription": "Carbon Turbo de Eudora é um perfume Amadeirado Masculino. Carbon Turbo foi lançada em 2014. Carbon Turbo foi criado por Francisco Marano e Veronica Casanova. As notas de topo são: Tomilho, Hortelã, Cardamomo, Sálvia e Maçã. As notas de coração são: Cedro, Violeta, Lavanda e Noz-moscada. As notas de fundo são: Âmbar, Couro, Baunilha e Segredo Eudora.",
+      "imagens": [
         {
           "id": 1,
-          "image": ""
+          "imagem": ""
         }
       ],
-      "createdAt": "2025-04-24T21:38:39.108Z",
-      "updatedAt": "2025-04-24T21:38:39.108Z"
+      "criadoEm": "2025-04-24T21:38:39.108Z",
+      "atualizadoEm": "2025-04-24T21:38:39.108Z"
     }
   ],
   "categories": [
