@@ -1,13 +1,4 @@
 .container-principal {
-  display: flex;
-  height: 100vh; /* Garante que o sidenav ocupe a altura total da tela */
-  width: 100%;
-}
-
-app-sidebar {
-  flex: 0 0 250px; /* Define a largura fixa do sidenav */
-}
-
-.container-principal app-listagem-produtos {
-  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(100px, 312px) 1fr;
 }
