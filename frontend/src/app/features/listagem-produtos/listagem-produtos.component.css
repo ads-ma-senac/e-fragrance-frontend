@@ -1,28 +1,27 @@
 .produtos-container {
-    padding: 20px;
-    height: 100%;
-    width: 100%;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
 }
-  
-  .actions-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .add-product-btn {
-    background-color: black;
-    color: white;
-  }
-  
-  .status-active {
-    color: green;
-    font-weight: bold;
-  }
-  
-  .status-inactive {
-    color: gray;
-    font-weight: bold;
-  }
-  
+
+.actions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-product-btn {
+  background-color: black;
+  color: white;
+}
+
+.status-active {
+  color: green;
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: gray;
+  font-weight: bold;
+}
