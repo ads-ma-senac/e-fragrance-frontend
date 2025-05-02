@@ -18,32 +18,53 @@
 
     <div>
         <table mat-table [dataSource]="dataSource">
-            <!-- <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Nome </th>
-                <td mat-cell *matCellDef="let produto"> {{produto.name}} </td>
-            </ng-container>
-            <ng-container matColumnDef="brand">
-                <th mat-header-cell *matHeaderCellDef> Marca </th>
-                <td mat-cell *matCellDef="let produto"> {{produto.brand}} </td>
-            </ng-container>
-             -->
-            @for (coluna of displayedColumns; track coluna){
-                <ng-container [matColumnDef]="coluna">
-                    <th mat-header-cell *matHeaderCellDef> {{coluna}} </th>
-                    <td mat-cell *matCellDef="let produto"> {{produto[coluna]}} </td>
-                </ng-container>
+            @for (coluna of displayedColumns; track coluna) {
+              <ng-container [matColumnDef]="coluna">
+                <th mat-header-cell *matHeaderCellDef>
+                    {{ getHeader(coluna) }}
+                  </th>
+                  
+                  <td mat-cell *matCellDef="let produto">
+                    @if (coluna === 'acoes') {
+                        <button mat-icon-button color="warn"  (click)="deletarProduto(produto)">
+                            <div class="icone-delete">
+                                <mat-icon>delete</mat-icon>
+                            </div>
+                            
+                        </button>
+                        <button  mat-icon-button color="primary" class="icone-edit" (click)="editarProduto(produto)">
+                            <mat-icon >edit</mat-icon>
+                        </button>
+                        
+                    } @else {
+                        <ng-container *ngIf="coluna === 'criadoEm'; else checkPrice">
+                            {{ produto[coluna] | date: 'dd/MM/yyyy HH:mm' }}
+                        </ng-container>
+                        <ng-template #checkPrice>
+                            <ng-container *ngIf="coluna === 'precoUnidade'; else normalCell">
+                                {{ produto[coluna] | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #normalCell>
+                            {{ produto[coluna] }}
+                        </ng-template>
+                    }
+                  </td>
+              </ng-container>
             }
+          
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+          </table>
+          
     </div>
 
-    <div>
+    <!-- <div>
         <mat-paginator [length]="100"
                         [pageSize]="10"
                         [pageSizeOptions]="[5, 10, 25, 100]"
                         aria-label="Select page">
         </mat-paginator>
-    </div>
+    </div> -->
     
 </div>

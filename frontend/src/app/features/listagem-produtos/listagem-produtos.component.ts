@@ -5,7 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {Produto } from '../../shared/types/produto';
+import { Produto } from '../../shared/types/produto';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { DeleteConfirmationDialogComponent } from '../../shared/delete/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 const produtos: Produto[] = [
   {
@@ -33,14 +36,46 @@ const produtos: Produto[] = [
 
 @Component({
   selector: 'app-listagem-produtos',
-  imports: [MatTableModule,MatPaginatorModule, MatIconModule, MatButtonModule, MatFormFieldModule,MatInputModule],
+  imports: [MatTableModule,MatPaginatorModule, MatIconModule, MatButtonModule, MatFormFieldModule,MatInputModule, CommonModule, MatDialogModule],
   templateUrl: './listagem-produtos.component.html',
   styleUrl: './listagem-produtos.component.css'
 })
 
 export class ListagemProdutosComponent {
 
-  displayedColumns: string[] = ['nome', 'marca']
+  getHeader(coluna: string): string {
+    return this.columns.find(c => c.columnDef === coluna)?.header || coluna;
+  }
 
+  // displayedColumns: string[] = ['nome', 'marca', 'genero', 'precoUnidade', 'unidadeEmEstoque', 'criadoEm']
+  columns = [
+    { columnDef: 'nome', header: 'Nome' },
+    { columnDef: 'marca', header: 'Marca' },
+    { columnDef: 'genero', header: 'Gênero' },
+    { columnDef: 'precoUnidade', header: 'Preço' },
+    { columnDef: 'unidadeEmEstoque', header: 'Estoque' },
+    { columnDef: 'criadoEm', header: 'Data de Cadastro' },
+    { columnDef: 'acoes', header: ' ' },
+  ];
+  
+  displayedColumns = [...this.columns.map(c => c.columnDef)];
+  
   dataSource = produtos;
+
+  constructor(private dialog: MatDialog) {}
+
+  editarProduto(produto: Produto) {
+    console.log('Editar produto:', produto);
+  }
+  
+  deletarProduto(produto: Produto) {
+    this.openDeleteDialog(produto);
+  }
+
+  openDeleteDialog(produto: Produto) {
+    const dialogReferencia = this.dialog.open(DeleteConfirmationDialogComponent, {
+      data: {nome: produto.nome}, width: '480px',
+    });
+  }
+  
 }
