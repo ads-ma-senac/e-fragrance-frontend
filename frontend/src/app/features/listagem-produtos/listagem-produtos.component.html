@@ -7,16 +7,16 @@
     </div>
     
     <div class="actions-header">
-        <mat-form-field >
-            <input matInput placeholder="Buscar produto">
+        <mat-form-field class="container-buscar">
+            <input matInput placeholder="Buscar produto" class="input-buscar-produto">
         </mat-form-field> 
 
-        <button mat-raised-button class="">
+        <button mat-raised-button class="botao-adicionar">
             Adicionar novo produto
         </button>
     </div>
 
-    <div>
+    <div class="container-table">
         <table mat-table [dataSource]="dataSource">
             @for (coluna of displayedColumns; track coluna) {
               <ng-container [matColumnDef]="coluna">
@@ -28,12 +28,12 @@
                     @if (coluna === 'acoes') {
                         <button mat-icon-button color="warn"  (click)="deletarProduto(produto)">
                             <div class="icone-delete">
-                                <mat-icon>delete</mat-icon>
+                                <mat-icon fontSet="material-icons-outlined">delete</mat-icon>
                             </div>
                             
                         </button>
                         <button  mat-icon-button color="primary" class="icone-edit" (click)="editarProduto(produto)">
-                            <mat-icon >edit</mat-icon>
+                            <mat-icon fontSet="material-icons-outlined" >edit</mat-icon>
                         </button>
                         
                     } @else {
@@ -55,16 +55,15 @@
           
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-          
+        </table>
+        <div class="container-mat-paginator">
+            <mat-paginator class="mat-paginator" [length]="100"
+                            
+                            aria-label="Select page">
+            </mat-paginator>
+        </div>          
     </div>
 
-    <!-- <div>
-        <mat-paginator [length]="100"
-                        [pageSize]="10"
-                        [pageSizeOptions]="[5, 10, 25, 100]"
-                        aria-label="Select page">
-        </mat-paginator>
-    </div> -->
+    
     
 </div>
