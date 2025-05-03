@@ -1,34 +1,44 @@
 <div class="container">
     <div class="login">
-        <h1 class="logo">fragrance</h1>
+        <div class="logo">
+            <img [ngSrc]="fragranceUrl" width="170" height="50">
+        </div>
 
         <div class="container-login">
-            <h2>Acesse sua conta</h2>
-            <p>Bem-vindo de volta! Por favor, insira os seus dados para entrar.</p>
+            <h1>Acesse sua conta</h1>
+            <p>Bem-vindo de volta! Por favor, insira os seus dados
+                <br>para entrar.
+            </p>
 
-            <form action="">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <mat-form-field>
                     <mat-label>E-mail</mat-label>
                     <input matInput required />
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Senha</mat-label>
-                    <input matInput type="password" required/>
+                    <input matInput type="password" required />
                 </mat-form-field>
+
+                @if (loginInvalid) {
+                <div class="error"><mat-icon fontIcon="cancel"></mat-icon> E-mail ou senha incorretos</div>
+                }
+
+                <div class="reset-password">
+                    <a href="#">Esqueceu sua Senha?</a>
+                </div>
+
+                <div class="button">
+                    <button type="submit">Entrar</button>
+                </div>
             </form>
-            <div class="reset-password">
-                <a href="#">Esqueceu sua Senha?</a>
-            </div>
-            <div class="button">
-                <button mat-flat-button>Entrar</button>
-            </div>
+
             <div class="footer">
                 <footer>&copy; Fragrance 2025</footer>
             </div>
         </div>
     </div>
     <div class="cover">
-        img
-        <!-- <img [ngSrc]="coverUrl" > -->
+        <img [ngSrc]="coverUrl" fill>
     </div>
 </div>
