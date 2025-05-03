@@ -70,6 +70,7 @@ button {
     margin: 15px 0;
     width: 370px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .footer {
@@ -81,7 +82,7 @@ button {
 
 footer {
     color: #868686;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .cover {
