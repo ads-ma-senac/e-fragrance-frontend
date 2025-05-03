@@ -23,7 +23,7 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class LoginComponent {
   coverUrl = 'cover.png';
-  fragranceUrl = 'fragrance.png';
+  fragranceUrl = 'fragrance.svg';
   loginForm: FormGroup;
   loginInvalid = false;
 

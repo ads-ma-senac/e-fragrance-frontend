@@ -1,7 +1,7 @@
 <div class="container">
     <div class="login">
         <div class="logo">
-            <img [ngSrc]="fragranceUrl" width="170" height="50">
+            <img [ngSrc]="fragranceUrl" width="157" height="40">
         </div>
 
         <div class="container-login">
@@ -13,11 +13,11 @@
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <mat-form-field>
                     <mat-label>E-mail</mat-label>
-                    <input matInput required />
+                    <input matInput required  autocomplete="username" />
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Senha</mat-label>
-                    <input matInput type="password" required />
+                    <input matInput type="password" required autocomplete="current-password"  />
                 </mat-form-field>
 
                 @if (loginInvalid) {
