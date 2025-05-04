@@ -32,7 +32,7 @@
                             </div>
                             
                         </button>
-                        <button  mat-icon-button color="primary" class="icone-edit" (click)="editarProduto(produto)">
+                        <button  mat-icon-button color="primary" class="icone-edit" [routerLink]="['/produtos/editar', produto.id]" (click)="editarProduto(produto)">
                             <mat-icon fontSet="material-icons-outlined" >edit</mat-icon>
                         </button>
                         

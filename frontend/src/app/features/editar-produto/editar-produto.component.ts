@@ -1,15 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import { RouterLink } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ProdutoService } from '../../shared/services/produto.service';
 
 @Component({
-  selector: 'app-cadastro-produto',
+  selector: 'app-editar-produto',
+  templateUrl: './editar-produto.component.html',
+  styleUrls: ['./editar-produto.component.css'],
+  standalone: true,
   imports: [CommonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -17,20 +21,22 @@ import { RouterLink } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     RouterLink,
-    ReactiveFormsModule],
-  templateUrl: './cadastro-produto.component.html',
-  styleUrl: './cadastro-produto.component.css'
+    ReactiveFormsModule]
 })
-
-export class CadastroProdutoComponent {
+export class EditarProdutoComponent implements OnInit {
   produtoForm: FormGroup;
-  formSubmitted = false;
+  id!: number;
 
   generos = ['Masculino', 'Feminino', 'Unissex'];
   categorias = ['Amadeirado', 'Cítrico', 'Oriental', 'Aromático', 'Floral', 'Gourmand', 'Fern'];
   concentracoes = ['Parfum', 'Eau de Parfum', 'Eau de Toilette', 'Eau de Cologne', 'Eau Fraiche'];
 
-  constructor(private fb: FormBuilder) {
+  private fb = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
+  private produtoService = inject(ProdutoService);
+  formSubmitted = false;
+
+  constructor() {
     this.produtoForm = this.fb.group({
       nome: ['', Validators.required],
       marca: ['', Validators.required],
@@ -40,18 +46,25 @@ export class CadastroProdutoComponent {
       concentracao: ['', Validators.required],
       preco: ['', Validators.required],
       estoque: ['', Validators.required],
-      descricao: ['', Validators.required],
+      descricao: [''],
       imagem: [null]
     });
   }
 
-  onSubmit() {
-    this.formSubmitted = true;
+  ngOnInit() {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
 
+    this.produtoService.buscarPorId(this.id).subscribe(produto => {
+      console.log('Produto carregado:', produto);
+      this.produtoForm.patchValue(produto);
+    });
+  }
+
+  onSubmit() {
     if (this.produtoForm.valid) {
-      console.log(this.produtoForm.value);
-    } else{
-      
+      this.produtoService.atualizar(this.id, this.produtoForm.value).subscribe(() => {
+        alert('Produto atualizado com sucesso!');
+      });
     }
   }
 
@@ -60,3 +73,4 @@ export class CadastroProdutoComponent {
     this.produtoForm.patchValue({ imagem: file });
   }
 }
+
