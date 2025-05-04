@@ -14,6 +14,11 @@
   margin-bottom: 32px;
 }
 
+.produtos-container-name h1{
+  font-size: 30px;
+  font-weight: 500;
+}
+
 .lista-container-name{
   margin-bottom: 24px;
 }

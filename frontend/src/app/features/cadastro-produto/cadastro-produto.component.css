@@ -1,0 +1,136 @@
+.container-cadastro {
+    padding: 32px;
+    height: 100%;
+    width: 100%;
+}
+
+.produtos-container-name {
+    margin: 7px 0px 32px 0px;
+}
+
+.produtos-container-name h1 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.cadastrar-container-name {
+    margin-bottom: 24px;
+}
+
+.cadastrar-container-name p {
+    font-size: 18px;
+    font-weight: 400px;
+}
+
+.botao-cancelar{
+  border-radius: 0%;
+  border: 1px solid;
+  box-shadow: none;
+  padding: 25px 20px;
+  background-color: white !important;
+  color: black !important;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.botao-salvar{
+  border-radius: 0%;
+  box-shadow: none;
+  padding: 25px 20px;
+  background-color: black !important;
+  color: white !important;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.form-container {
+    display: grid;
+    
+}
+
+.container-form {
+    width: 100%;
+    max-width: auto;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    padding: 24px 12px;
+    background-color: #fff;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+}
+
+.form-column label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+mat-form-field {
+    width: 100%;
+    border-radius: 0px !important;
+}
+
+.actions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.botoes {
+    display: flex;
+    gap: 12px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+mat-form-field textarea {
+    resize: none; 
+    height: 100px; 
+    line-height: 1.5; 
+  }
+
+.label-imagens-nome{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 40px 220px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.upload-label:hover {
+    border-color: #999;
+}
+
+::ng-deep div.mat-mdc-select-panel{
+    border-radius: 0px !important;
+    background-color: white !important;
+}
+
+::ng-deep div.mat-mdc-select-panel:hover{
+    background-color: #f0f0f0 !important;
+}
+

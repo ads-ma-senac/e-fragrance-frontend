@@ -9,6 +9,7 @@ import { Produto } from '../../shared/types/produto';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { DeleteConfirmationDialogComponent } from '../../shared/delete/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { RouterLink } from '@angular/router';
 
 const produtos: Produto[] = [
   {
@@ -57,7 +58,7 @@ const produtos: Produto[] = [
 
 @Component({
   selector: 'app-listagem-produtos',
-  imports: [MatTableModule,MatPaginatorModule, MatIconModule, MatButtonModule, MatFormFieldModule,MatInputModule, CommonModule, MatDialogModule],
+  imports: [MatTableModule,MatPaginatorModule, MatIconModule, MatButtonModule, MatFormFieldModule,MatInputModule, CommonModule, MatDialogModule, RouterLink],
   templateUrl: './listagem-produtos.component.html',
   styleUrl: './listagem-produtos.component.css'
 })
