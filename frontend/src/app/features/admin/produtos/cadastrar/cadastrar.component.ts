@@ -18,11 +18,11 @@ import { RouterLink } from '@angular/router';
     MatIconModule,
     RouterLink,
     ReactiveFormsModule],
-  templateUrl: './cadastro-produto.component.html',
-  styleUrl: './cadastro-produto.component.css'
+  templateUrl: './cadastrar.component.html',
+  styleUrl: './cadastrar.component.css'
 })
 
-export class CadastroProdutoComponent {
+export class CadastrarComponent {
   produtoForm: FormGroup;
   formSubmitted = false;
 
@@ -51,7 +51,7 @@ export class CadastroProdutoComponent {
     if (this.produtoForm.valid) {
       console.log(this.produtoForm.value);
     } else{
-      
+
     }
   }
 

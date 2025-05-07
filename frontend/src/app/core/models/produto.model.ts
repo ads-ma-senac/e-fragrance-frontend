@@ -1,3 +1,5 @@
+import {Imagem} from './imagem.model';
+
 export interface Produto {
     id: number
     sku: string
@@ -10,13 +12,8 @@ export interface Produto {
     unidadeEmEstoque: number
     concentracao: string
     descricaodescription: string
-    imagens: Imagen[]
+    imagens: Imagem[]
     criadoEm: string
     atualizadoEm: string
   }
-  
-  export interface Imagen {
-    id: number
-    imagem: string
-  }
-  
+

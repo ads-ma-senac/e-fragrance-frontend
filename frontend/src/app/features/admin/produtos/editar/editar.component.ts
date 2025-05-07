@@ -7,12 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ProdutoService } from '../../shared/services/produto.service';
+import { ProdutoService } from '../../../../core/services/produto.service';
 
 @Component({
   selector: 'app-editar-produto',
-  templateUrl: './editar-produto.component.html',
-  styleUrls: ['./editar-produto.component.css'],
+  templateUrl: './editar.component.html',
+  styleUrls: ['./editar.component.css'],
   standalone: true,
   imports: [CommonModule,
     MatFormFieldModule,
@@ -23,7 +23,7 @@ import { ProdutoService } from '../../shared/services/produto.service';
     RouterLink,
     ReactiveFormsModule]
 })
-export class EditarProdutoComponent implements OnInit {
+export class EditarComponent implements OnInit {
   produtoForm: FormGroup;
   id!: number;
 

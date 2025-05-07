@@ -5,11 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Produto } from '../../shared/types/produto';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { DeleteConfirmationDialogComponent } from '../../shared/delete/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { RouterLink } from '@angular/router';
+import {Produto} from '../../../../core/models/produto.model';
 
 const produtos: Produto[] = [
   {
@@ -59,11 +59,11 @@ const produtos: Produto[] = [
 @Component({
   selector: 'app-listagem-produtos',
   imports: [MatTableModule,MatPaginatorModule, MatIconModule, MatButtonModule, MatFormFieldModule,MatInputModule, CommonModule, MatDialogModule, RouterLink],
-  templateUrl: './listagem-produtos.component.html',
-  styleUrl: './listagem-produtos.component.css'
+  templateUrl: './listar.component.html',
+  styleUrl: './listar.component.css'
 })
 
-export class ListagemProdutosComponent {
+export class ListarComponent {
 
   getHeader(coluna: string): string {
     return this.columns.find(c => c.columnDef === coluna)?.header || coluna;
@@ -79,9 +79,9 @@ export class ListagemProdutosComponent {
     { columnDef: 'criadoEm', header: 'Data de Cadastro' },
     { columnDef: 'acoes', header: ' ' },
   ];
-  
+
   displayedColumns = [...this.columns.map(c => c.columnDef)];
-  
+
   dataSource = produtos;
 
   constructor(private dialog: MatDialog) {}
@@ -89,7 +89,7 @@ export class ListagemProdutosComponent {
   editarProduto(produto: Produto) {
     console.log('Editar produto:', produto);
   }
-  
+
   deletarProduto(produto: Produto) {
     this.openDeleteDialog(produto);
   }
@@ -99,5 +99,5 @@ export class ListagemProdutosComponent {
       data: {nome: produto.nome}, width: '480px',
     });
   }
-  
+
 }
