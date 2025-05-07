@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from "./shared/sidebar/sidebar.component";
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SidebarComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [RouterOutlet],
+  template:'<router-outlet></router-outlet>',
 })
-export class AppComponent {
-  title = 'frontend';
-}
+export class AppComponent {}
