@@ -1,0 +1,87 @@
+* {
+  margin: 0px;
+}
+
+
+.produtos-container {
+  padding: 32px;
+  height: 100%;
+  width: 100%;
+}
+
+.produtos-container-name{
+  margin-top: 7px;
+  margin-bottom: 32px;
+}
+
+.produtos-container-name h1{
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.lista-container-name{
+  margin-bottom: 24px;
+}
+
+.lista-container-name p{
+  font-size: 18px;
+  font-weight: 400px;
+}
+
+.actions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper{
+  background-color: white !important;
+}
+
+::ng-deep .mdc-text-field{
+  padding: 0px !important;
+}
+
+.container-buscar{
+  /* padding: 10px 30px; */
+  font-size: 12px;
+
+}
+
+.input-buscar-produto{
+  /* padding: 10px 12px; */
+  
+}
+
+.botao-adicionar{
+  border-radius: 0%;
+  box-shadow: none;
+  padding: 25px 20px;
+  background-color: black !important;
+  color: white !important;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.container-table{
+  margin-top: 24px;
+}
+
+.status-active {
+  color: green;
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: gray;
+  font-weight: bold;
+}
+
+::ng-deep .mat-mdc-paginator-range-label{
+  display: none;
+}
+
+::ng-deep .mat-mdc-paginator-page-size{
+  display: none !important;
+}

@@ -1,0 +1,15 @@
+<div class="container-delete">
+    <div class="container-pergunta">
+        <h2 mat-dialog-title class="pergunta">Deletar produto?</h2>
+    </div>
+    <mat-dialog-content class="container-dialog">
+        <div class="conatiner-texto">
+            <p>Tem certeza que deseja excluir o perfume <strong>{{ data.nome }}</strong>?</p>
+            <p>Esta ação não pode ser desfeita.</p>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="container-opcoes">
+        <button mat-button class="botao-cancelar" (click)="onCancel()">Cancelar</button>
+        <button mat-raised-button class="botao-deletar" color="warn" (click)="onDelete()">Deletar</button>
+    </mat-dialog-actions>
+</div>
