@@ -1,13 +1,12 @@
 {
   "users": [
     {
-      "name": "Nicolau guedes de paula",
+      "nome": "Nicolau guedes de paula",
       "email": "nicola@senac.com",
-      "password":"senha@test123",
-      "role": "ADMIN",
+      "senha": "senha@test123",
       "avatar": "",
-      "createdAt": "2025-04-24T21:38:39.108Z",
-      "updatedAt": "2025-04-24T21:38:39.108Z"
+      "criadoEm": "2025-04-24T21:38:39.108Z",
+      "atualizadoEm": "2025-04-24T21:38:39.108Z"
     }
   ],
   "products": [
