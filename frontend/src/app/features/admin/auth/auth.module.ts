@@ -1,18 +1,20 @@
-import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './login/login.component';
+import { RouterModule, Routes } from '@angular/router';
 
+import { LoginComponent } from './login/login.component';
+import { LoginGuard } from '../../../core/guards/login.guard';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    title:'Login - Fragrance',
-  }
-]
+    canActivate: [LoginGuard],
+    title: 'Login - Fragrance',
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthModule { }
+export class AuthModule {}
