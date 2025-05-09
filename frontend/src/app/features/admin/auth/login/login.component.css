@@ -52,6 +52,7 @@ form {
   align-self: self-end;
   border-bottom: 2px solid transparent;
   transition: border 300ms ease-in-out;
+  margin-top: 24px;
 }
 
 .reset-password:hover {

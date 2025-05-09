@@ -50,13 +50,10 @@
           >
             A senha deve ter no mínimo 6 caracteres
           </mat-error>
+          <mat-error *ngIf="loginInvalid">
+            {{ loginErroMensagem }}
+          </mat-error>
         </mat-form-field>
-
-        @if (loginInvalid) {
-        <div class="error">
-          <mat-icon fontIcon="cancel"></mat-icon>{{ loginErroMensagem }}
-        </div>
-        }
 
         <a href="#" class="reset-password">Esqueceu sua Senha?</a>
         <button class="button" type="submit">Entrar</button>
