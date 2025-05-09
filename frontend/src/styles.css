@@ -9,7 +9,6 @@ body {
   height: 100%;
 }
 
-
 body,
 input,
 button,
@@ -19,17 +18,21 @@ label {
   font-family: "Montserrat", sans-serif;
 }
 
-
 mat-form-field.mat-mdc-form-field .mat-mdc-text-field-wrapper {
   background-color: transparent !important;
   padding-left: 0;
 }
 
-
 mat-form-field.mat-mdc-form-field .mat-mdc-text-field-wrapper:hover {
   background-color: transparent !important;
 }
 
-mat-form-field.mat-mdc-form-field .mat-mdc-text-field-wrapper:hover .mat-mdc-form-field-focus-overlay {
+mat-form-field.mat-mdc-form-field
+  .mat-mdc-text-field-wrapper:hover
+  .mat-mdc-form-field-focus-overlay {
   opacity: 0;
+}
+
+.mat-mdc-form-field-error-wrapper {
+  padding: 0 !important;
 }
