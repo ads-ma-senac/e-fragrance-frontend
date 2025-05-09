@@ -1,35 +1,56 @@
+import { Injectable, computed, signal } from '@angular/core';
+import { Observable, catchError, map, of } from 'rxjs';
+
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, of } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated = false;
-  localStorageKey: string = "LOGGED_IN_USER";
+  private readonly localStorageKey = 'usuario_logado';
+  private usuarioSignal = signal<Usuario | null>(null);
   private baseUrl = 'http://localhost:3000/users';
 
+  constructor(private http: HttpClient, private router: Router) {
+    const localData = localStorage.getItem(this.localStorageKey);
 
-  constructor(private http: HttpClient, private router: Router) { }
+    if (localData) {
+      try {
+        this.usuarioSignal.set(JSON.parse(localData));
+      } catch {
+        this.usuarioSignal.set(null);
+      }
+    }
+  }
+
+  setUsuario(usuario: Usuario) {
+    this.usuarioSignal.set(usuario);
+    localStorage.setItem(this.localStorageKey, JSON.stringify(usuario));
+  }
+
+  getUsuario() {
+    return this.usuarioSignal.asReadonly();
+  }
 
   login(email: string, senha: string): Observable<{ erro?: string }> {
-    return this.http.get<Usuario[]>(`${this.baseUrl}`, { params: { email } })
+    return this.http
+      .get<Usuario[]>(`${this.baseUrl}`, { params: { email } })
       .pipe(
-        map(users => {
-          const user = users.find(u => u.email === email && u.senha === senha);
+        map((users) => {
+          const user = users.find(
+            (u) => u.email === email && u.senha === senha
+          );
 
           if (user) {
-            this.isAuthenticated = true;
             localStorage.setItem(this.localStorageKey, 'true');
+            this.setUsuario(user);
             this.router.navigate(['/admin/produtos']);
             return {};
           }
 
           return { erro: 'Usuário ou senha inválidos' };
-
         }),
         catchError(() => {
           return of({ erro: 'Erro ao tentar fazer login' });
@@ -38,18 +59,11 @@ export class AuthService {
   }
 
   logout() {
-    this.isAuthenticated = false;
-    localStorage.setItem(this.localStorageKey, 'false');
-    return of({ messagem: "Sessão encerrada com sucesso" });
+    localStorage.setItem(this.localStorageKey, '');
+    return of({ messagem: 'Sessão encerrada com sucesso' });
   }
 
-  isLoggedIn() {
-    const loggedIn = localStorage.getItem(this.localStorageKey);
-    if (loggedIn == 'true')
-      this.isAuthenticated = true;
-    else
-      this.isAuthenticated = false;
-    return this.isAuthenticated;
+  isLoggedIn(): boolean {
+    return this.usuarioSignal() !== null;
   }
-
 }
