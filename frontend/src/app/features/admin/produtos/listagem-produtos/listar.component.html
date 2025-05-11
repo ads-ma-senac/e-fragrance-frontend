@@ -8,7 +8,7 @@
 
     <div class="actions-header">
         <mat-form-field class="container-buscar">
-            <input matInput placeholder="Buscar produto" class="input-buscar-produto">
+            <input matInput placeholder="Buscar produto" class="input-buscar-produto" [(ngModel)]="filtro" (ngModelChange)="aplicarFiltro($event)" />
         </mat-form-field>
 
         <button mat-raised-button class="botao-adicionar" [routerLink]="['./novo']">
@@ -57,8 +57,8 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         <div class="container-mat-paginator">
-            <mat-paginator class="mat-paginator" [length]="100"
-
+            <mat-paginator class="mat-paginator" [length]="dataSource.data.length"
+                [pageSize]="10"
                             aria-label="Select page">
             </mat-paginator>
         </div>

@@ -6,7 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ProdutoService } from '../../../../core/services/produto.service';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -30,7 +31,7 @@ export class CadastrarComponent {
   categorias = ['Amadeirado', 'Cítrico', 'Oriental', 'Aromático', 'Floral', 'Gourmand', 'Fern'];
   concentracoes = ['Parfum', 'Eau de Parfum', 'Eau de Toilette', 'Eau de Cologne', 'Eau Fraiche'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private produtoServices: ProdutoService, private router: Router) {
     this.produtoForm = this.fb.group({
       nome: ['', Validators.required],
       marca: ['', Validators.required],
@@ -38,8 +39,8 @@ export class CadastrarComponent {
       categoria: ['', Validators.required],
       volume: ['', Validators.required],
       concentracao: ['', Validators.required],
-      preco: ['', Validators.required],
-      estoque: ['', Validators.required],
+      preco: ['', [Validators.required, Validators.min(0)]],
+      estoque: ['', [Validators.required, Validators.min(0)]],
       descricao: ['', Validators.required],
       imagem: [null]
     });
@@ -49,14 +50,32 @@ export class CadastrarComponent {
     this.formSubmitted = true;
 
     if (this.produtoForm.valid) {
-      console.log(this.produtoForm.value);
+      // O serviço de produtos agora transformará os dados no formato correto
+      this.produtoServices.cadastrar(this.produtoForm.value).subscribe({
+        next: () => {
+          alert('Produto cadastrado com sucesso!');
+          this.produtoForm.reset();
+          this.router.navigate(['admin/produtos']);
+        },
+        error: (error: any) => {
+          console.error('Erro ao cadastrar produto:', error);
+          alert('Erro ao cadastrar produto. Verifique o console para mais detalhes.');
+        }
+      });
     } else{
-
+      Object.keys(this.produtoForm.controls).forEach(field => {
+        const control = this.produtoForm.get(field);
+        control?.markAsTouched();
+      });
     }
   }
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
     this.produtoForm.patchValue({ imagem: file });
+  }
+
+  cancelarEdicao() {
+    this.router.navigate(['/admin/produtos']);
   }
 }

@@ -6,8 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProdutoService } from '../../../../core/services/produto.service';
+import { Produto } from '../../../../core/models/produto.model';
 
 @Component({
   selector: 'app-editar-produto',
@@ -24,6 +25,7 @@ import { ProdutoService } from '../../../../core/services/produto.service';
     ReactiveFormsModule]
 })
 export class EditarComponent implements OnInit {
+
   produtoForm: FormGroup;
   id!: number;
 
@@ -33,8 +35,10 @@ export class EditarComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private produtoService = inject(ProdutoService);
   formSubmitted = false;
+  produtoOriginal: Produto | null = null;
 
   constructor() {
     this.produtoForm = this.fb.group({
@@ -46,31 +50,88 @@ export class EditarComponent implements OnInit {
       concentracao: ['', Validators.required],
       preco: ['', Validators.required],
       estoque: ['', Validators.required],
-      descricao: [''],
+      descricao: ['', Validators.required],
       imagem: [null]
     });
   }
 
   ngOnInit() {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    const idParametro = this.route.snapshot.paramMap.get('id');
+    if(idParametro) {
+      this.id = Number(idParametro);
+      this.carregarProduto();
+    } else{
+      console.error('ID do produto não fornecido na URL');
+      this.router.navigate(['admin/produtos']);
+    }
+  }
 
-    this.produtoService.buscarPorId(this.id).subscribe(produto => {
-      console.log('Produto carregado:', produto);
-      this.produtoForm.patchValue(produto);
+  carregarProduto() {
+    this.produtoService.buscarPorId(this.id).subscribe({
+      next: (produto) => {
+        console.log('Produto carregado:', produto);
+        this.produtoOriginal = produto;
+        
+        this.produtoForm.patchValue({
+          id: produto.id,
+          nome: produto.nome,
+          marca: produto.marca,
+          genero: produto.genero,
+          categoria: typeof produto.categoria === 'number' ? this.categorias[produto.categoria - 1] : produto.categoria,
+          volume: produto.volume,
+          concentracao: produto.concentracao,
+          preco: produto.precoUnidade, 
+          estoque: produto.unidadeEmEstoque, 
+          descricao: produto.descricaodescription 
+        });
+      },
+      error: (erro) => {
+        console.error('Erro ao carregar produto:', erro);
+        alert('Erro ao carregar os dados do produto. Verifique o console para mais detalhes.');
+        this.router.navigate(['/produtos']);
+      }
     });
   }
 
   onSubmit() {
-    if (this.produtoForm.valid) {
-      this.produtoService.atualizar(this.id, this.produtoForm.value).subscribe(() => {
-        alert('Produto atualizado com sucesso!');
+    this.formSubmitted = true;
+
+    if (this.produtoForm.valid && this.produtoOriginal) {
+      const produtoAtualizado: Produto = {
+        ...this.produtoOriginal,
+        nome: this.produtoForm.value.nome,
+        marca: this.produtoForm.value.marca,
+        genero: this.produtoForm.value.genero,
+        categoria: this.produtoForm.value.categoria,
+        volume: this.produtoForm.value.volume,
+        concentracao: this.produtoForm.value.concentracao,
+        precoUnidade: this.produtoForm.value.preco, 
+        unidadeEmEstoque: this.produtoForm.value.estoque, 
+        descricaodescription: this.produtoForm.value.descricao, 
+        atualizadoEm: new Date().toISOString()
+      };
+
+      this.produtoService.atualizar(this.id, produtoAtualizado).subscribe({
+        next: () => {
+          alert('Produto atualizado com sucesso!');
+          this.router.navigate(['/admin/produtos'])
+        },
+        error: (error) => {
+          console.error('Erro ao atualizar o produto:', error);
+        }
       });
+    } else {
+
     }
   }
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
     this.produtoForm.patchValue({ imagem: file });
+  }
+
+  cancelarEdicao() {
+    this.router.navigate(['/admin/produtos']);
   }
 }
 
