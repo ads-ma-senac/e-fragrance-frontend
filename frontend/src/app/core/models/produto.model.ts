@@ -6,7 +6,7 @@ export interface Produto {
     nome: string
     marca: string
     genero: string
-    categoria: number
+    categoria: any
     volume: number
     precoUnidade: number
     unidadeEmEstoque: number

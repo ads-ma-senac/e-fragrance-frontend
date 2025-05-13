@@ -1,0 +1,20 @@
+.user-profile {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  border-top: 1px solid #f0f0f0;
+  gap: 12px;
+}
+
+.profile-pic {
+  border-radius: 50%;
+}
+
+.user-info {
+  font-size: 14px;
+}
+
+.user-info p {
+  font-weight: 800;
+}

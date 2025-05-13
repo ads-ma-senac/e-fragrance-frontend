@@ -1,44 +1,70 @@
 <div class="container">
-    <div class="login">
-        <div class="logo">
-            <img [ngSrc]="fragranceUrl" width="157" height="40">
-        </div>
-
-        <div class="container-login">
-            <h1>Acesse sua conta</h1>
-            <p>Bem-vindo de volta! Por favor, insira os seus dados
-                <br>para entrar.
-            </p>
-
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <mat-form-field>
-                    <mat-label>E-mail</mat-label>
-                    <input matInput required  autocomplete="username" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Senha</mat-label>
-                    <input matInput type="password" required autocomplete="current-password"  />
-                </mat-form-field>
-
-                @if (loginInvalid) {
-                <div class="error"><mat-icon fontIcon="cancel"></mat-icon> E-mail ou senha incorretos</div>
-                }
-
-                <div class="reset-password">
-                    <a href="#">Esqueceu sua Senha?</a>
-                </div>
-
-                <div class="button">
-                    <button type="submit">Entrar</button>
-                </div>
-            </form>
-
-            <div class="footer">
-                <footer>&copy; Fragrance 2025</footer>
-            </div>
-        </div>
+  <div class="login">
+    <div class="logo">
+      <img [ngSrc]="fragranceUrl" width="157" height="45" />
     </div>
-    <div class="cover">
-        <img [ngSrc]="coverUrl" fill>
+
+    <div class="container-login">
+      <h1>Acesse sua conta</h1>
+      <p>
+        Bem-vindo de volta! Por favor, insira os seus dados <br />para entrar.
+      </p>
+
+      <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+        <mat-form-field appearance="fill" [hideRequiredMarker]="true">
+          <mat-label class="form-label">E-mail</mat-label>
+          <input
+            matInput
+            required
+            autocomplete="username"
+            formControlName="email"
+          />
+
+          <mat-error
+            *ngIf="email?.touched && email?.hasError('required')"
+            class="error-message"
+            >O e-mail é obrigatório
+          </mat-error>
+          <mat-error *ngIf="email?.touched && email?.hasError('email')">
+            E-mail inválido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" [hideRequiredMarker]="true">
+          <mat-label class="form-label">Senha</mat-label>
+          <input
+            matInput
+            type="password"
+            required
+            autocomplete="current-password"
+            formControlName="password"
+          />
+
+          <mat-error
+            *ngIf="password?.touched && password?.hasError('required')"
+          >
+            A senha é obrigatória
+          </mat-error>
+          <mat-error
+            *ngIf="password?.touched && password?.hasError('minlength')"
+          >
+            A senha deve ter no mínimo 6 caracteres
+          </mat-error>
+          <mat-error *ngIf="loginInvalid">
+            {{ loginErroMensagem }}
+          </mat-error>
+        </mat-form-field>
+
+        <a href="#" class="reset-password">Esqueceu sua Senha?</a>
+        <button class="button" type="submit">Entrar</button>
+      </form>
+
+      <div class="footer">
+        <footer>&copy; Fragrance 2025</footer>
+      </div>
     </div>
+  </div>
+  <div class="cover">
+    <img [ngSrc]="coverUrl" fill />
+  </div>
 </div>

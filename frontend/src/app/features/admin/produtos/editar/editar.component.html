@@ -21,10 +21,10 @@
                     <p>Editar perfume</p>
                 </div>
                 <div class="botoes">
-                    <button mat-raised-button class="botao-cancelar" [routerLink]="['/produtos']">
+                    <button mat-raised-button class="botao-cancelar" type="button" (click)="cancelarEdicao()" [routerLink]="['admin/produtos']">
                         Cancelar
                     </button>
-                    <button mat-raised-button type="submit" class="botao-salvar">
+                    <button mat-raised-button type="submit" class="botao-salvar" [routerLink]="['admin/produtos']">
                         Salvar produto
                     </button>
                 </div>
