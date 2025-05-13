@@ -1,1 +1,18 @@
-<p>home works!</p>
+<app-header></app-header>
+<app-hero></app-hero>
+<section class="products">
+  <h2>Nossos perfumes</h2>
+  <p>Uma coleção de fragrâncias exclusivas para momentos inesquecíveis</p>
+
+  <div class="product-grid">
+  <mat-card *ngFor="let perfume of perfumes" class="product-card">
+    <img mat-card-image [src]="perfume.image" alt="{{ perfume.name }}">
+    <mat-card-content>
+      <h3>{{ perfume.name }}</h3>
+      <p>{{ perfume.price }}</p>
+      <a mat-button color="primary">ADICIONAR À SACOLA</a>
+    </mat-card-content>
+  </mat-card>
+</div>
+</section>
+<app-footer></app-footer>

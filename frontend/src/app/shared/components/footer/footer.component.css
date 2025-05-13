@@ -1,0 +1,29 @@
+.footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  background-color: #111;
+  color: #fff;
+  padding: 4rem 2rem;
+  gap: 2rem;
+  font-size: 0.9rem;
+}
+
+.footer-section h4 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.footer-section p {
+  margin: 0.3rem 0;
+}
+
+.footer mat-form-field {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.footer button {
+  margin-top: 1rem;
+}
