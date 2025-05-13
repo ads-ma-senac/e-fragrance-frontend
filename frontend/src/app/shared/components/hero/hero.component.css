@@ -1,24 +1,51 @@
 .hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4rem 2rem;
-  background-color: #f8f8f8;
-  gap: 2rem;
+  position: relative;
 }
 
 .hero-content {
-  flex: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #000000;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  max-width: 40ch;
+  padding: 32px;
 }
 
 .hero-content h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  font-family: "Playfair Display", serif;
 }
 
 .hero-image {
-  flex: 1;
   max-width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
+}
+
+.hero-container {
+  width: 100%;
+  height: 368px;
+}
+
+.button-hero {
+  display: inline-block;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 10px 20px;
+  margin-top: 36px;
+  cursor: pointer;
+  text-decoration: none;
+  max-width: max-content;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-hero:hover {
+  background-color: #000000;
+  color: #ffffff;
 }

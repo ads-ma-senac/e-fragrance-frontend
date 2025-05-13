@@ -9,14 +9,14 @@
 }
 
 .logo {
-  font-weight: bold;
-  font-size: 1.2rem;
+  height: 32.22px;
+  width: 112px;
 }
 
 nav a {
   margin: 0 12px;
   color: #000;
-  font-weight: 500;
+  font-size: 16px;
 }
 
 mat-icon {

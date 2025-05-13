@@ -1,15 +1,17 @@
 <mat-toolbar color="primary" class="header-toolbar">
-  <span class="logo">fragrance</span>
-  <span class="spacer"></span>
+  <div class="logo">
+    <img [ngSrc]="fragranceUrl" width="157" height="45" />
+  </div>
   <nav>
     <a mat-button>LANÇAMENTOS</a>
     <a mat-button>NOSSOS PERFUMES</a>
     <a mat-button>COLEÇÕES</a>
     <a mat-button>SOBRE</a>
   </nav>
-  <span class="spacer"></span>
-  <button mat-icon-button><mat-icon>buscar</mat-icon></button>
-  <button mat-icon-button><mat-icon>favorito</mat-icon></button>
-  <button mat-icon-button><mat-icon>perfil</mat-icon></button>
-  <button mat-icon-button><mat-icon>carrinho</mat-icon></button>
+  <div>
+    <mat-icon class="material-symbols-outlined">search</mat-icon>
+    <mat-icon class="material-symbols-outlined">person</mat-icon>
+    <mat-icon class="material-symbols-outlined">star</mat-icon>
+    <mat-icon class="material-symbols-outlined">shopping_bag</mat-icon>
+  </div>
 </mat-toolbar>
