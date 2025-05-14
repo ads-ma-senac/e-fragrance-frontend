@@ -5,14 +5,16 @@
   <p>Uma coleção de fragrâncias exclusivas para momentos inesquecíveis</p>
 
   <div class="product-grid">
-  <mat-card *ngFor="let perfume of perfumes" class="product-card">
-    <img mat-card-image [src]="perfume.image" alt="{{ perfume.name }}">
-    <mat-card-content>
-      <h3>{{ perfume.name }}</h3>
-      <p>{{ perfume.price }}</p>
-      <a mat-button color="primary">ADICIONAR À SACOLA</a>
-    </mat-card-content>
-  </mat-card>
-</div>
+    @for (perfume of perfumes; track perfume) {
+    <mat-card *ngFor="let perfume of perfumes" class="product-card">
+      <img mat-card-image [src]="perfume.imagens[0]" alt="{{ perfume.nome[0]}}" />
+      <mat-card-content>
+        <h3>{{ perfume.nome }}</h3>
+        <p>{{ perfume.precoUnidade}}</p>
+        <a mat-button color="primary">ADICIONAR À SACOLA</a>
+      </mat-card-content>
+    </mat-card>
+    }
+  </div>
 </section>
 <app-footer></app-footer>

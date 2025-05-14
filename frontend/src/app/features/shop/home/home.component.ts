@@ -1,3 +1,5 @@
+import { Produto } from './../../../core/models/produto.model';
+import { ProdutoService } from './../../../core/services/produto.service';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -15,16 +17,17 @@ import { FooterComponent } from '../../../shared/components/footer/footer.compon
     MatButtonModule,
     HeaderComponent,
     HeroComponent,
-    FooterComponent], 
+    FooterComponent],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'] 
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  perfumes = [
-    {
-      name: 'Carbon',
-      price: 'R$ 299,90',
-      image: 'assets/perfume.jpg',
-    },
-  ];
+  perfumes : Produto[] = [];
+
+  constructor(private produtoService: ProdutoService) {
+    this.produtoService.listar().subscribe((produtos) => {
+      this.perfumes = produtos;
+    });
+  }
+
 }
