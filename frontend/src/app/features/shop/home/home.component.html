@@ -6,14 +6,17 @@
 
   <div class="product-grid">
     @for (perfume of perfumes; track perfume) {
-    <mat-card *ngFor="let perfume of perfumes" class="product-card">
-      <img mat-card-image [src]="perfume.imagens[0]" alt="{{ perfume.nome[0]}}" />
-      <mat-card-content>
-        <h3>{{ perfume.nome }}</h3>
-        <p>{{ perfume.precoUnidade}}</p>
-        <a mat-button color="primary">ADICIONAR À SACOLA</a>
-      </mat-card-content>
-    </mat-card>
+    <div class="product-card">
+      <div class="product-img">
+        <img [src]="'http://localhost:3000' + perfume.imagens[0]" alt="{{ perfume.nome[0]}}" />
+      </div>
+      <div class="product-info">
+        <span>{{perfume.marca}}</span>
+        <p> à partir de R${{ perfume.precoUnidade}}</p>
+      </div>
+      <h3>{{ perfume.nome }}</h3>
+      <a>ADICIONAR À SACOLA</a>
+    </div>
     }
   </div>
 </section>
