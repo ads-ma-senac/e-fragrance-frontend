@@ -27,12 +27,52 @@ mat-form-field.mat-mdc-form-field .mat-mdc-text-field-wrapper:hover {
   background-color: transparent !important;
 }
 
-mat-form-field.mat-mdc-form-field
-  .mat-mdc-text-field-wrapper:hover
-  .mat-mdc-form-field-focus-overlay {
+mat-form-field.mat-mdc-form-field .mat-mdc-text-field-wrapper:hover .mat-mdc-form-field-focus-overlay {
   opacity: 0;
 }
 
 .mat-mdc-form-field-error-wrapper {
   padding: 0 !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align::before,
+.mat-mdc-form-field-bottom-align::before {
+  display: none !important;
+}
+
+.mdc-text-field {
+  border-radius: 0 !important;
+}
+
+.mat-mdc-table {
+  background-color: transparent !important;
+}
+
+thead tr.mat-mdc-header-row {
+  height: initial;
+
+}
+
+thead th.mat-mdc-header-cell {
+  background-color: #F9FAFB !important;
+  border-color: #E4E7EC !important;
+  color: #475467;
+  font-weight: 500;
+  padding: 12px 16px;
+}
+
+tbody td.mdc-data-table__cell {
+  border: none;
+  border-bottom: 1px solid #E4E7EC !important;
+}
+
+.mat-mdc-form-field-infix {
+  min-height: initial !important;
+  padding: 10px 14px !important;
+
+}
+
+.mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 0 !important;
 }

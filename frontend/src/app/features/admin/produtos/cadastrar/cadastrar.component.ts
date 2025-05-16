@@ -13,8 +13,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ProdutoConstants } from '../constants/produto.constants';
 import { ProdutoService } from '../../../../core/services/produto.service';
+import { ImageUploadCardComponent } from '../../../../shared/components/image-upload-card/image-upload-card.component';
+import { ProdutoConstants } from '../constants/produto.constants';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -27,6 +28,7 @@ import { ProdutoService } from '../../../../core/services/produto.service';
     MatIconModule,
     RouterLink,
     ReactiveFormsModule,
+    ImageUploadCardComponent
   ],
   templateUrl: './cadastrar.component.html',
   styleUrl: './cadastrar.component.css',
@@ -91,5 +93,11 @@ export class CadastrarComponent {
 
   cancelarEdicao() {
     this.router.navigate(['/admin/produtos']);
+  }
+
+  handleImageChange(file: File | null): void {
+    if (file) {
+      this.produtoForm.patchValue({ imagem: file });
+    }
   }
 }

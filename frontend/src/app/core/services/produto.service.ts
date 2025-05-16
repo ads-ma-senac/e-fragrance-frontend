@@ -1,9 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, filter, from, map, switchMap } from 'rxjs';
+import { Observable, from, map, switchMap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { Produto } from '../models/produto.model';
-import id from '@angular/common/locales/id';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +10,7 @@ import id from '@angular/common/locales/id';
 export class ProdutoService {
   private baseUrl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   listar(
     pageIndex: number = 0,
@@ -70,8 +69,30 @@ export class ProdutoService {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  atualizar(id: number, produto: Produto): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, produto);
+  atualizar(id: number, produtoData: Produto): Observable<any> {
+    console.log(id)
+    return from(this.convertFileToBase64(produtoData.imagem as File)).pipe(
+      switchMap((imagemBase64) => {
+        const novoProduto: Produto = {
+          id: produtoData.id,
+          sku: produtoData.sku,
+          nome: produtoData.nome,
+          marca: produtoData.marca,
+          genero: produtoData.genero,
+          categoria: produtoData.categoria,
+          volume: produtoData.volume,
+          precoUnidade: produtoData.precoUnidade,
+          unidadeEmEstoque: produtoData.unidadeEmEstoque,
+          concentracao: produtoData.concentracao,
+          descricao: produtoData.descricao,
+          imagem: imagemBase64,
+          criadoEm: new Date().toISOString(),
+          atualizadoEm: new Date().toISOString(),
+        };
+
+        return this.http.put(`${this.baseUrl}/${id}`, novoProduto);
+      })
+    );
   }
 
   private convertFileToBase64(file: File): Promise<string> {

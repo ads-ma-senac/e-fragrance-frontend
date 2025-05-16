@@ -1,4 +1,3 @@
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -6,6 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,8 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Produto } from '../../../../core/models/produto.model';
-import { ProdutoConstants } from '../constants/produto.constants';
 import { ProdutoService } from '../../../../core/services/produto.service';
+import { ImageUploadCardComponent } from '../../../../shared/components/image-upload-card/image-upload-card.component';
+import { ProdutoConstants } from '../constants/produto.constants';
 
 @Component({
   selector: 'app-editar-produto',
@@ -31,6 +32,7 @@ import { ProdutoService } from '../../../../core/services/produto.service';
     MatIconModule,
     RouterLink,
     ReactiveFormsModule,
+    ImageUploadCardComponent,
   ],
 })
 export class EditarComponent implements OnInit {
@@ -40,6 +42,7 @@ export class EditarComponent implements OnInit {
   generos = ProdutoConstants.GENEROS;
   categorias = ProdutoConstants.CATEGORIAS;
   concentracoes = ProdutoConstants.CONCENTRACOES;
+  imagemPreview: File | string | null = null;
 
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
@@ -59,7 +62,7 @@ export class EditarComponent implements OnInit {
       preco: ['', Validators.required],
       estoque: ['', Validators.required],
       descricao: ['', Validators.required],
-      imagem: [null],
+      imagem: ['', Validators.required],
     });
   }
 
@@ -97,7 +100,10 @@ export class EditarComponent implements OnInit {
           preco: produto.precoUnidade,
           estoque: produto.unidadeEmEstoque,
           descricao: produto.descricao,
+          imagem: produto.imagem
         });
+
+        this.imagemPreview = produto.imagem
       },
       error: (erro) => {
         console.error('Erro ao carregar produto:', erro);
@@ -125,6 +131,7 @@ export class EditarComponent implements OnInit {
         unidadeEmEstoque: this.produtoForm.value.estoque,
         descricao: this.produtoForm.value.descricao,
         atualizadoEm: new Date().toISOString(),
+        imagem: this.produtoForm.value.imagem
       };
 
       this.produtoService.atualizar(this.id, produtoAtualizado).subscribe({
@@ -140,12 +147,13 @@ export class EditarComponent implements OnInit {
     }
   }
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    this.produtoForm.patchValue({ imagem: file });
-  }
-
   cancelarEdicao() {
     this.router.navigate(['/admin/produtos']);
+  }
+
+  handleImageChange(file: File | null): void {
+    if (file) {
+      this.produtoForm.patchValue({ imagem: file });
+    }
   }
 }

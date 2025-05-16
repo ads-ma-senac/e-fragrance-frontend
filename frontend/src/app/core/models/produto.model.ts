@@ -10,7 +10,7 @@ export interface Produto {
   unidadeEmEstoque: number;
   concentracao: string;
   descricao: string;
-  imagem: string;
+  imagem: string | File;
   criadoEm: string;
   atualizadoEm: string;
 }

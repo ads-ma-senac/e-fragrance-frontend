@@ -6,6 +6,8 @@
   padding: 8px 32px;
   height: 100%;
   width: 100%;
+  background-color: #FDFDFD;
+
 }
 
 .produtos-container-name {
@@ -19,7 +21,8 @@
 
 .lista-container-name p {
   font-size: 18px;
-  font-weight: 400px;
+  font-weight: 600;
+  color: #333333;
 }
 
 .actions-header {

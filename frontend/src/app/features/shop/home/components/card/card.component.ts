@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Produto } from '../../../../../core/models/produto.model';
 
@@ -14,8 +14,10 @@ export class CardComponent implements OnInit {
   imgSrc = '';
 
   ngOnInit() {
-    this.imgSrc = this.produto.imagem.startsWith('data:image')
-      ? this.produto.imagem
-      : `http://localhost:3000${this.produto.imagem}`;
+    if (typeof this.produto.imagem === 'string') {
+      this.imgSrc = this.produto.imagem.startsWith('data:image')
+        ? this.produto.imagem
+        : `http://localhost:3000${this.produto.imagem}`;
+    }
   }
 }

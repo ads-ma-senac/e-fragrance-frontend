@@ -21,7 +21,8 @@
                     <p>Cadastrar novo perfume</p>
                 </div>
                 <div class="botoes">
-                    <button mat-raised-button class="botao-cancelar" type="button" (click)="cancelarEdicao()" [routerLink]="['admin/produtos']">
+                    <button mat-raised-button class="botao-cancelar" type="button" (click)="cancelarEdicao()"
+                        [routerLink]="['admin/produtos']">
                         Cancelar
                     </button>
                     <button mat-raised-button type="submit" class="botao-salvar">
@@ -33,15 +34,12 @@
             <div class="container-form">
                 <div class="container-primeiro-cadastro">
                     <div class="form-row">
-
                         <div class="form-column">
                             <label>Nome do Perfume</label>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="nome" placeholder="ex. Carbon" />
+                            <mat-form-field appearance="outline" class="form-field">
+                                <input matInput formControlName="nome" placeholder="ex. Carbon" class="form-input" />
                             </mat-form-field>
                         </div>
-
-
                         <div class="form-column">
                             <label>Marca</label>
                             <mat-form-field appearance="outline">
@@ -113,7 +111,7 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-column">
+                    <div class="form-column description">
                         <label>Descrição</label>
                         <mat-form-field appearance="outline" class="full-width">
                             <textarea matInput formControlName="descricao" placeholder="ex. Carbon Turbo de Eudora é um perfume Amadeirado Masculino. Carbon Turbo foi lançada em 2014
@@ -121,15 +119,11 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="upload-section">
+                    <div class="form-column upload-section">
                         <div class="label-imagens-nome">
                             <label>Imagens do Perfume</label>
                         </div>
-                        <label for="imagem-upload" class="upload-label">
-                            <mat-icon>cloud_upload</mat-icon>
-                            Clique para fazer upload ou arraste e solte
-                            <input id="imagem-upload" type="file" (change)="onFileSelected($event)" hidden />
-                        </label>
+                        <app-image-upload-card (imageChange)="handleImageChange($event)"></app-image-upload-card>
                     </div>
                 </div>
             </div>
