@@ -23,24 +23,8 @@ type link = { path: string; label: string };
 export class SidebarComponent {
   links: link[] = [
     {
-      path: '/home',
-      label: 'home',
-    },
-    {
-      path: '/dashboard',
-      label: 'dashboard',
-    },
-    {
-      path: '/vendas',
-      label: 'vendas',
-    },
-    {
       path: '/admin/produtos',
-      label: 'produtos',
-    },
-    {
-      path: '/usuarios',
-      label: 'usuarios',
+      label: 'Produtos',
     },
   ];
 }
