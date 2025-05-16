@@ -13,6 +13,6 @@
   "type": "module",
   "dependencies": {
     "e-fragrance": "file:",
-    "json-server": "^1.0.0-beta.3"
+    "json-server": "^0.17.4"
   }
 }
