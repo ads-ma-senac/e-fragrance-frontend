@@ -1,19 +1,16 @@
-import {Imagem} from './imagem.model';
-
 export interface Produto {
-    id: number
-    sku: string
-    nome: string
-    marca: string
-    genero: string
-    categoria: any
-    volume: number
-    precoUnidade: number
-    unidadeEmEstoque: number
-    concentracao: string
-    descricaodescription: string
-    imagens: Imagem[]
-    criadoEm: string
-    atualizadoEm: string
-  }
-
+  id: number;
+  sku: string;
+  nome: string;
+  marca: string;
+  genero: string;
+  categoria: any;
+  volume: number;
+  precoUnidade: number;
+  unidadeEmEstoque: number;
+  concentracao: string;
+  descricao: string;
+  imagem: string;
+  criadoEm: string;
+  atualizadoEm: string;
+}
