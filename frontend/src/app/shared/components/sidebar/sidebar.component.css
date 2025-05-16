@@ -1,12 +1,17 @@
 .sidenav-container {
   height: 100vh;
   display: flex;
+  border-right: 1px solid #E9EAEB;
+}
+
+.sidenav-container mat-sidenav.sidenav {
+  background-color: #FFFFFF !important;
 }
 
 .sidenav {
   display: flex;
   /* width: 312px; */
-  border-right: 1px solid #e0e0e0;
+
   border-radius: 0%;
   justify-content: space-between;
 }
