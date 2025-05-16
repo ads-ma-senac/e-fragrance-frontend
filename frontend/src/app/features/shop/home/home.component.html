@@ -6,17 +6,7 @@
 
   <div class="product-grid">
     @for (perfume of perfumes; track perfume) {
-    <div class="product-card">
-      <div class="product-img">
-        <img [src]="'http://localhost:3000' + perfume.imagens[0]" alt="{{ perfume.nome[0]}}" />
-      </div>
-      <div class="product-info">
-        <span>{{perfume.marca}}</span>
-        <p> à partir de R${{ perfume.precoUnidade}}</p>
-      </div>
-      <h3>{{ perfume.nome }}</h3>
-      <a>ADICIONAR À SACOLA</a>
-    </div>
+    <app-card [produto]="perfume"></app-card>
     }
   </div>
 </section>
