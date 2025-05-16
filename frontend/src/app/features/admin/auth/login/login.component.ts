@@ -61,6 +61,7 @@ export class LoginComponent {
   }
 
   private handleLoginResponse(response: { erro?: string }) {
+
     if (response?.erro) {
       this.loginErroMensagem = response.erro;
       this.loginInvalid = true;
