@@ -1,33 +1,37 @@
-import { Produto } from './../../../core/models/produto.model';
-import { ProdutoService } from './../../../core/services/produto.service';
-import { Component } from '@angular/core';
+import { CardComponent } from './components/card/card.component';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-// Update the path below if the actual location is different
+import { Component } from '@angular/core';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { HeroComponent } from '../../../shared/components/hero/hero.component';
-import { FooterComponent } from '../../../shared/components/footer/footer.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { Produto } from './../../../core/models/produto.model';
+import { ProdutoService } from './../../../core/services/produto.service';
+
+// Update the path below if the actual location is different
 
 @Component({
   selector: 'app-home',
-   standalone: true,
-  imports: [CommonModule,
+  standalone: true,
+  imports: [
+    CommonModule,
     MatCardModule,
     MatButtonModule,
     HeaderComponent,
     HeroComponent,
-    FooterComponent],
+    FooterComponent,
+    CardComponent,
+  ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  perfumes : Produto[] = [];
+  perfumes: Produto[] = [];
 
   constructor(private produtoService: ProdutoService) {
-    this.produtoService.listar().subscribe((produtos) => {
-      this.perfumes = produtos;
+    this.produtoService.listar(0, 100).subscribe((produtos) => {
+      this.perfumes = produtos.data;
     });
   }
-
 }

@@ -2,28 +2,22 @@
   margin: 0px;
 }
 
-
 .produtos-container {
-  padding: 32px;
+  padding: 8px 32px;
   height: 100%;
   width: 100%;
 }
 
-.produtos-container-name{
-  margin-top: 7px;
-  margin-bottom: 32px;
+.produtos-container-name {
+  margin-bottom: 24px;
 }
 
-.produtos-container-name h1{
+.produtos-container-name h1 {
   font-size: 30px;
   font-weight: 500;
 }
 
-.lista-container-name{
-  margin-bottom: 24px;
-}
-
-.lista-container-name p{
+.lista-container-name p {
   font-size: 18px;
   font-weight: 400px;
 }
@@ -32,29 +26,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex: 1;
   margin-bottom: 16px;
 }
 
-::ng-deep .mat-mdc-text-field-wrapper{
+::ng-deep .mat-mdc-text-field-wrapper {
   background-color: white !important;
 }
 
-::ng-deep .mdc-text-field{
+::ng-deep .mdc-text-field {
   padding: 0px !important;
 }
 
-.container-buscar{
-  /* padding: 10px 30px; */
+.container-buscar {
+  flex: 1;
+  max-width: 280px;
   font-size: 12px;
-
 }
 
-.input-buscar-produto{
-  /* padding: 10px 12px; */
-  
-}
-
-.botao-adicionar{
+.botao-adicionar {
   border-radius: 0%;
   box-shadow: none;
   padding: 25px 20px;
@@ -64,7 +54,7 @@
   font-weight: 400;
 }
 
-.container-table{
+.container-table {
   margin-top: 24px;
 }
 
@@ -78,10 +68,10 @@
   font-weight: bold;
 }
 
-::ng-deep .mat-mdc-paginator-range-label{
+::ng-deep .mat-mdc-paginator-range-label {
   display: none;
 }
 
-::ng-deep .mat-mdc-paginator-page-size{
+::ng-deep .mat-mdc-paginator-page-size {
   display: none !important;
 }

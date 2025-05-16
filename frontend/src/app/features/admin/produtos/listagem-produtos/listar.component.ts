@@ -1,29 +1,41 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+
 import { CommonModule } from '@angular/common';
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { RouterLink } from '@angular/router';
-import {Produto} from '../../../../core/models/produto.model';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { Produto } from '../../../../core/models/produto.model';
 import { ProdutoService } from '../../../../core/services/produto.service';
-import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listagem-produtos',
-  imports: [MatTableModule,MatPaginatorModule, MatIconModule, MatButtonModule, MatFormFieldModule,MatInputModule, CommonModule, MatDialogModule, RouterLink, FormsModule],
+  imports: [
+    MatTableModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    CommonModule,
+    MatDialogModule,
+    RouterLink,
+    FormsModule,
+  ],
   templateUrl: './listar.component.html',
-  styleUrl: './listar.component.css'
+  styleUrl: './listar.component.css',
 })
-
-export class ListarComponent {
-
+export class ListarComponent implements AfterViewInit {
   getHeader(coluna: string): string {
-    return this.columns.find(c => c.columnDef === coluna)?.header || coluna;
+    return this.columns.find((c) => c.columnDef === coluna)?.header || coluna;
   }
 
   columns = [
@@ -36,42 +48,54 @@ export class ListarComponent {
     { columnDef: 'acoes', header: ' ' },
   ];
 
-  displayedColumns = [...this.columns.map(c => c.columnDef)];
+  displayedColumns = [...this.columns.map((c) => c.columnDef)];
 
-  filtro: string = ''
-  // dataSource: Produto[] = [];
+  totalItems = 0;
+  pageSize = 5;
 
-  dataSource = new MatTableDataSource<Produto>();
-  
+  filtroControl = new FormControl('');
+
+  filtro: string = '';
+
+  data: Produto[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dialog: MatDialog, private produtoService: ProdutoService) {}
+  constructor(
+    private dialog: MatDialog,
+    private produtoService: ProdutoService
+  ) {}
 
-  ngOnInit(){
-    console.log('ListarComponent carregado');
+  ngOnInit() {
+    this.filtroControl.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((valor) => this.aplicarFiltro(valor));
+  }
+
+  ngAfterViewInit() {
+    this.paginator.page.subscribe(() => this.carregarProdutos());
     this.carregarProdutos();
   }
 
   carregarProdutos() {
-    this.produtoService.listar().subscribe(produtos => {
-      console.log('Produtos recebidos:', produtos);
-      this.dataSource.data = produtos;
-      this.dataSource.paginator = this.paginator;
-    })
-  }
+    const pageIndex = this.paginator?.pageIndex ?? 0;
+    const pageSize = this.paginator?.pageSize ?? this.pageSize;
 
-  editarProduto(produto: Produto) {
-    console.log('Editar produto:', produto);
+    this.produtoService
+      .listar(pageIndex, pageSize, this.filtro)
+      .subscribe((produtos) => {
+        this.data = produtos.data;
+        this.totalItems = produtos.total;
+      });
   }
 
   deletarProduto(produto: Produto) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
-      data: { nome: produto.nome},
+      data: { nome: produto.nome },
       width: '490px',
     });
 
-    dialogRef.afterClosed().subscribe(confirmado => {
+    dialogRef.afterClosed().subscribe((confirmado) => {
       if (confirmado) {
         this.produtoService.excluir(Number(produto.id)).subscribe(() => {
           this.carregarProdutos();
@@ -80,21 +104,11 @@ export class ListarComponent {
     });
   }
 
-  openDeleteDialog(produto: Produto) {
-    const dialogReferencia = this.dialog.open(DeleteConfirmationDialogComponent, {
-      data: {nome: produto.nome}, width: '480px',
-    });
+  aplicarFiltro(valor: string | null) {
+    const termo = valor?.trim().toLowerCase() ?? '';
+
+    this.filtro = termo;
+    this.paginator.firstPage();
+    this.carregarProdutos();
   }
-
-  aplicarFiltro(valor: string) {
-    const termo = valor.toLowerCase();
-
-    if (!termo) {
-      this.carregarProdutos();
-      return;
-    }
-
-  this.dataSource.filter = termo;
-  }
-
 }
