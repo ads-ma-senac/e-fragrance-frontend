@@ -1,0 +1,36 @@
+<!-- image-upload-card.component.html -->
+<div class="image-upload-card">
+    <div class="card-content">
+        <ng-container *ngIf="!image; else imagePreview">
+            <div class="drop-area" [ngClass]="{'dragging': isDragging}" (dragover)="handleDragOver($event)"
+                (dragleave)="handleDragLeave()" (drop)="handleDrop($event)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <p class="drop-text-main">Arraste e solte sua imagem aqui</p>
+                <p class="drop-text-sub">ou selecione do seu computador</p>
+                <button type="button" class="file-button" (click)="triggerFileInput()">
+                    Escolher Arquivo
+                </button>
+            </div>
+        </ng-container>
+
+        <ng-template #imagePreview>
+            <div class="preview-container">
+                <img [src]="image" alt="Preview" class="image-preview">
+                <button class="remove-button" (click)="removeImage()" aria-label="Remover imagem" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </ng-template>
+
+        <input type="file" accept="image/*" (change)="handleFileChange($event)" class="file-input">
+    </div>
+</div>
