@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {SidebarComponent} from '../../components/sidebar/sidebar.component';
+import { RouterOutlet } from '@angular/router';
+import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-admin-dashboard-layout',
@@ -8,7 +8,7 @@ import {SidebarComponent} from '../../components/sidebar/sidebar.component';
     RouterOutlet,
     SidebarComponent
   ],
-  template:`<div class="container-principal">
+  template: `<div class="container-principal">
     <app-sidebar></app-sidebar>
     <main>
       <router-outlet></router-outlet>
@@ -16,7 +16,7 @@ import {SidebarComponent} from '../../components/sidebar/sidebar.component';
   </div>`,
   styles: `.container-principal {
     display: grid;
-    grid-template-columns: minmax(100px, 312px) 1fr;
+    grid-template-columns: minmax(100px, 280px) 1fr;
   }`
 })
 export class AdminDashboardLayoutComponent {
