@@ -22,3 +22,25 @@ nav a {
 mat-icon {
   color: #000;
 }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-actions .nav-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-actions a {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-actions a:hover {
+  transform: scale(1.1);
+}
