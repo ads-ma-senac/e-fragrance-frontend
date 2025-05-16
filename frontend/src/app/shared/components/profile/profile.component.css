@@ -1,5 +1,5 @@
 .user-profile {
-  padding: 16px;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   margin-top: auto;
@@ -7,7 +7,8 @@
   gap: 12px;
 }
 
-.profile-pic {
+.profile-pic,
+.profile-pic img {
   border-radius: 50%;
 }
 
@@ -16,5 +17,11 @@
 }
 
 .user-info p {
+  font-size: 12px;
   font-weight: 800;
+}
+
+.user-info span {
+  font-size: 12px;
+  font-weight: 300;
 }
