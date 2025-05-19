@@ -6,6 +6,11 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'login'
+  },
+  {
+    path: '',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
