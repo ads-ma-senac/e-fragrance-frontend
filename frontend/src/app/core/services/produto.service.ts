@@ -70,7 +70,6 @@ export class ProdutoService {
   }
 
   atualizar(id: number, produtoData: Produto): Observable<any> {
-    console.log(id)
     return from(this.convertFileToBase64(produtoData.imagem as File)).pipe(
       switchMap((imagemBase64) => {
         const novoProduto: Produto = {
@@ -96,11 +95,17 @@ export class ProdutoService {
   }
 
   private convertFileToBase64(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (err) => reject(err);
-      reader.readAsDataURL(file);
-    });
+    if (typeof file === 'string') {
+      return new Promise((resolve) => resolve(file));
+    } else if (file instanceof File && file.type.startsWith('image/')) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = (err) => reject(err);
+        reader.readAsDataURL(file);
+      });
+    } else {
+      return Promise.reject('Arquivo inválido');
+    }
   }
 }
