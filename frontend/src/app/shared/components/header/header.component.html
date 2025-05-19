@@ -11,6 +11,9 @@
   <div class="nav-actions">
     <a href="#"> <img [src]="searchIcon" class="nav-icon" /></a>
     <a href="/admin/login"> <img [src]="userIcon" class="nav-icon" /></a>
-    <a href="#"> <img [src]="shoppingBagIcon" class="nav-icon" /></a>
+    <button (click)="mostrarSacola()">
+      <img [src]="shoppingBagIcon" class="nav-icon" />
+    </button>
+    <!-- <a href="#"> </a> -->
   </div>
 </mat-toolbar>

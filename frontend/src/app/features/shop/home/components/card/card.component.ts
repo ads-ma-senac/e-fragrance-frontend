@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { MatDialog } from '@angular/material/dialog';
 import { Produto } from '../../../../../core/models/produto.model';
+import { CarrinhoService } from '../../../../../core/services/carrinho.service';
+import { CarrinhoComponent } from '../carrinho/carrinho.component';
 
 @Component({
   selector: 'app-card',
-  imports: [],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })
@@ -13,6 +15,18 @@ export class CardComponent implements OnInit {
   shoppingBagIcon = 'assets/icons/shopping-bag.svg';
   imgSrc = '';
 
+  constructor(private carrinhoService: CarrinhoService, private dialog: MatDialog) { }
+
+  openSidebar() {
+    this.dialog.open(CarrinhoComponent, {
+      panelClass: 'sidebar-dialog-panel',
+      position: { right: '0' },
+      height: '100vh',
+      width: '350px',
+      autoFocus: false,
+      hasBackdrop: true
+    });
+  }
 
   getDescription() {
     if (this.produto.descricao.length > 100) {
@@ -28,5 +42,9 @@ export class CardComponent implements OnInit {
         ? this.produto.imagem
         : `http://localhost:3000${this.produto.imagem}`;
     }
+  }
+
+  adicionarAoCarrinho() {
+    this.carrinhoService.adicionarAoCarrinho(this.produto)
   }
 }

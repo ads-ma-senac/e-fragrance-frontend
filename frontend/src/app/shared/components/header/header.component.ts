@@ -1,7 +1,8 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgOptimizedImage } from '@angular/common';
+import { CarrinhoService } from '../../../core/services/carrinho.service';
 
 @Component({
   selector: 'app-header',
@@ -16,4 +17,11 @@ export class HeaderComponent {
   shoppingBagIcon = 'assets/icons/shopping-bag.svg';
   userIcon = 'assets/icons/user.svg';
   starIcon = 'assets/icons/star.svg';
+
+
+  constructor(private carrinhoService: CarrinhoService) { }
+
+  mostrarSacola() {
+    this.carrinhoService.toggleCarrinho()
+  }
 }
