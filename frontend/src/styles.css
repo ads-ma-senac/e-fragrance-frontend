@@ -67,7 +67,7 @@ tbody td.mdc-data-table__cell {
   border-bottom: 1px solid #E4E7EC !important;
 }
 
-.mat-mdc-form-field-infix {
+.container-form .mat-mdc-form-field-infix {
   min-height: initial !important;
   padding: 10px 14px !important;
 
