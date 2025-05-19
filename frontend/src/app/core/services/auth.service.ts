@@ -3,6 +3,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Token } from '../models/token.model';
 import { Usuario } from '../models/usuario.model';
 
 @Injectable({
@@ -44,7 +45,12 @@ export class AuthService {
           );
 
           if (user) {
-            localStorage.setItem(this.localStorageKey, 'true');
+            const expired = new Date();
+            expired.setMinutes(2);
+
+            const token: Token = { createdAt: new Date(), expiredAt: expired, userId: user?.email }
+            localStorage.setItem("token", JSON.stringify(token))
+
             this.setUsuario(user);
             this.router.navigate(['/admin/produtos']);
             return {};
@@ -64,6 +70,21 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return this.usuarioSignal() !== null;
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return false;
+    }
+
+    const tokenParsed: Token = JSON.parse(token)
+
+    const expiredDate = new Date(tokenParsed.expiredAt)
+
+    if (expiredDate.getTime() < new Date().getTime()) {
+      return false;
+    }
+
+    return this.usuarioSignal() !== null
   }
 }
