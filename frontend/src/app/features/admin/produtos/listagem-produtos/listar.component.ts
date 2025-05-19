@@ -1,19 +1,19 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
-
-import { CommonModule } from '@angular/common';
-import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { RouterLink } from '@angular/router';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Produto } from '../../../../core/models/produto.model';
 import { ProdutoService } from '../../../../core/services/produto.service';
-import { RouterLink } from '@angular/router';
+import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
   selector: 'app-listagem-produtos',
@@ -63,10 +63,12 @@ export class ListarComponent implements AfterViewInit {
 
   constructor(
     private dialog: MatDialog,
-    private produtoService: ProdutoService
-  ) {}
+    private produtoService: ProdutoService,
+    private breakpointObserver: BreakpointObserver
+  ) { }
 
   ngOnInit() {
+
     this.filtroControl.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe((valor) => this.aplicarFiltro(valor));
@@ -78,6 +80,9 @@ export class ListarComponent implements AfterViewInit {
   }
 
   carregarProdutos() {
+
+    this.onResize()
+
     const pageIndex = this.paginator?.pageIndex ?? 0;
     const pageSize = this.paginator?.pageSize ?? this.pageSize;
 
@@ -110,5 +115,35 @@ export class ListarComponent implements AfterViewInit {
     this.filtro = termo;
     this.paginator.firstPage();
     this.carregarProdutos();
+  }
+
+
+  onResize() {
+    this.breakpointObserver
+      .observe([
+        Breakpoints.XSmall,
+        Breakpoints.Small,
+        Breakpoints.Medium,
+        Breakpoints.Large,
+        Breakpoints.XLarge,
+      ])
+      .subscribe((result) => {
+        if (result.matches) {
+          if (result.breakpoints[Breakpoints.XSmall]) {
+            this.pageSize = 3;
+          } else if (result.breakpoints[Breakpoints.Tablet]) {
+            this.pageSize = 5;
+          } else if (result.breakpoints[Breakpoints.Medium]) {
+            this.pageSize = 5;
+          } else if (result.breakpoints[Breakpoints.Large]) {
+            this.pageSize = 6;
+          }
+          else {
+            this.pageSize = 10;
+          }
+
+          this.paginator.pageSize = this.pageSize;
+        }
+      });
   }
 }
