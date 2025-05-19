@@ -13,6 +13,15 @@ export class CardComponent implements OnInit {
   shoppingBagIcon = 'assets/icons/shopping-bag.svg';
   imgSrc = '';
 
+
+  getDescription() {
+    if (this.produto.descricao.length > 100) {
+      return this.produto.descricao.substring(0, 100) + '...';
+    }
+    return this.produto.descricao;
+  }
+
+
   ngOnInit() {
     if (typeof this.produto.imagem === 'string') {
       this.imgSrc = this.produto.imagem.startsWith('data:image')
