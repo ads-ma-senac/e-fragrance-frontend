@@ -1,58 +1,29 @@
-<!-- <div class="container-dialog">
-
-    <div class="container-pergunta">
-        <h2 mat-dialog-title class="pergunta">Deletar produto?</h2>
-    </div>
-
-    <mat-dialog-content class="container-dialog">
-
-        <div *ngIf="carrinhoAberto()" class="cart-overlay">
-            <div class="cart-container">
-
-                <div class="cart-header">
-                    <h2>Sacola ({{ totalItems() }})</h2>
-                    <button (click)="fecharCarrinho()">Fechar</button>
-                </div>
-
-                <div *ngIf="items().length === 0" class="cart-empty">
-                    <p>Sua sacola está vazia</p>
-                    <button (click)="fecharCarrinho()">Continuar comprando</button>
-                </div>
-
-                <div *ngIf="items().length > 0" class="cart-items">
-                    <div *ngFor="let item of items()" class="cart-item">
-                        {{ item.nome }} - {{ item.quantidade }} x {{ item.precoUnidade | currency }}
-                    </div>
-
-                    <div class="cart-summary">
-                        <div class="total">
-                            <span>Total</span>
-                            <span>{{ precoTotal() | currency }}</span>
-                        </div>
-                        <button class="checkout-btn">Finalizar compra</button>
-                        <button (click)="fecharCarrinho()">Continuar comprando</button>
-                        <button (click)="limparSacola()">Limpar sacola</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </mat-dialog-content>
-
-    <mat-dialog-actions class="container-opcoes">
-        <button mat-button class="botao-cancelar" (click)="onCancel()">Cancelar</button>
-        <button mat-raised-button class="botao-deletar" color="warn" (click)="onDelete()">Deletar</button>
-    </mat-dialog-actions>
-
-</div> -->
-
 <div class="sidebar-dialog">
-    <div class="header">
-        <h2>Sidebar Dialog</h2>
+  <div class="cart-header">
+    <h2>Sacola de Compras</h2>
+    <button (click)="close()">Fechar</button>
+  </div>
+
+  <div class="content">
+    <div *ngIf="items().length === 0" class="cart-empty">
+      <p>Sua sacola está vazia</p>
+      <button class="button button-outline" (click)="close()">Continuar comprando</button>
     </div>
-    <div class="content">
-        <!-- Conteúdo aqui -->
-        <p>Este é o conteúdo do drawer.</p>
+
+    <div *ngIf="items().length > 0" class="cart-items">
+      <div *ngFor="let item of items()" class="cart-items-container">
+        <app-item-carrinho [item]="item"  ></app-item-carrinho>
+      </div>
+
+      <div class="cart-summary">
+        <div class="total">
+          <span>Subtotal</span>
+          <span>{{ precoTotal() | currency:'BRL' }}</span>
+        </div>
+        <button class="button button-primary">Finalizar compra</button>
+        <button class="button button-outline" (click)="close()">Continuar comprando</button>
+        <button class="button button-terciary" (click)="limparSacola()">Limpar sacola</button>
+      </div>
     </div>
+  </div>
 </div>

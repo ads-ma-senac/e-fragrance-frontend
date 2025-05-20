@@ -1,0 +1,63 @@
+.item-carrinho-card {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 16px;
+  align-items: center;
+  background-color: transparent;
+}
+
+.item-carrinho-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  width: 100%;
+  padding-top: 4px;
+}
+
+.item-carrinho-detalhes {
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.item-carrinho-detalhes span {
+  font-size: 12px;
+}
+
+.item-carrinho-detalhes h3 {
+  font-family: "Playfair Display", serif;
+}
+
+.item-carrinho-price {
+  place-self: start end;
+  padding-top: 2px;
+}
+
+.item-carrinho-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.item-carrinho-remove {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  padding: 8px;
+}
+
+.item-carrinho-remove:hover {
+  color: red;
+}
+
+.item-carrinho-remove svg {
+  width: 16px;
+  height: 16px;
+}

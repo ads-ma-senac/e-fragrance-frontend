@@ -1,62 +1,60 @@
-::ng-deep .mat-mdc-dialog-surface{
-    border-radius: 0px !important;
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 0px !important;
 }
 
-.container-delete{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border-radius: 0%;
+.container-delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 0%;
 }
 
 .pergunta {
-    font-size: 20px;
-    font-weight: 500;
-    margin: 0px; /* Espaçamento abaixo do título */
-  }
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0px; /* Espaçamento abaixo do título */
+}
 
 ::ng-deep .mat-mdc-dialog-container-with-actions .mat-mdc-dialog-content {
-    padding: 0px;
+  padding: 0px;
 }
 
 
+mat-dialog-content p {
+  margin: 0px;
+  font-size: 16px;
+}
 
-  
-  mat-dialog-content p {
-    margin: 0px;
-    font-size: 16px;
-  }
-  
-  mat-dialog-actions {
-    /* margin-top: 16px; */
-  }
+mat-dialog-actions {
+  /* margin-top: 16px; */
+}
 
 .container-opcoes {
-   display: flex;
-   justify-content: center; /* Centraliza os botões horizontalmente */
-   gap: 0px; /* Espaçamento entre os botões */
-   width: 100%; /* Garante que os botões ocupem a largura total */
+  display: flex;
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  gap: 0px; /* Espaçamento entre os botões */
+  width: 100%; /* Garante que os botões ocupem a largura total */
 }
 
-::ng-deep .mat-mdc-dialog-actions{
-    padding: 24px 0px 40px 0px;
+::ng-deep .mat-mdc-dialog-actions {
+  padding: 24px 0px 40px 0px;
 }
 
 .botao-cancelar {
-    background-color: white;
-    border: 1px solid black !important; /* Adiciona uma borda preta ao botão Cancelar */
+  background-color: white;
+  border: 1px solid black !important; /* Adiciona uma borda preta ao botão Cancelar */
 }
 
 ::ng-deep .mat-mdc-button:not(:disabled) {
-    /* color: var(--mdc-text-button-label-text-color, var(--mat-sys-primary)); */
-    background-color: white;
+  /* color: var(--mdc-text-button-label-text-color, var(--mat-sys-primary)); */
+  background-color: white;
 }
 
 .botao-cancelar,
 .botao-deletar {
-    border-radius: 0 !important; /* Remove as bordas arredondadas dos botões */
-    padding: 8px 16px; /* Ajusta o padding para um visual mais retangular */
+  border-radius: 0 !important; /* Remove as bordas arredondadas dos botões */
+  padding: 8px 16px; /* Ajusta o padding para um visual mais retangular */
 }
 
 .botao-deletar {
@@ -64,8 +62,7 @@
   color: white;
   font-weight: 400;
 }
-  
-  button[mat-button] {
-    margin-right: 8px;
-  }
-  
+
+button[mat-button] {
+  margin-right: 8px;
+}

@@ -1,19 +1,19 @@
 <div class="container">
   <div class="login">
     <div class="logo">
-      <img [ngSrc]="fragranceUrl" width="157" height="45" />
+      <img [ngSrc]="fragranceUrl" height="45" width="157"/>
     </div>
 
     <div class="container-login">
       <h1>Acesse sua conta</h1>
       <p>
-        Bem-vindo de volta! Por favor, insira os seus dados <br />para entrar.
+        Bem-vindo de volta! Por favor, insira os seus dados <br/>para entrar.
       </p>
 
-      <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
-        <mat-form-field appearance="fill" [hideRequiredMarker]="true">
+      <form (ngSubmit)="handleSubmit()" [formGroup]="loginForm">
+        <mat-form-field [hideRequiredMarker]="true" appearance="fill">
           <mat-label class="form-label">E-mail</mat-label>
-          <input matInput required autocomplete="username" formControlName="email" />
+          <input autocomplete="username" formControlName="email" matInput required/>
 
           <mat-error *ngIf="email?.touched && email?.hasError('required')" class="error-message">O e-mail é obrigatório
           </mat-error>
@@ -22,9 +22,9 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" [hideRequiredMarker]="true">
+        <mat-form-field [hideRequiredMarker]="true" appearance="fill">
           <mat-label class="form-label">Senha</mat-label>
-          <input matInput type="password" required autocomplete="current-password" formControlName="password" />
+          <input autocomplete="current-password" formControlName="password" matInput required type="password"/>
 
           <mat-error *ngIf="password?.touched && password?.hasError('required')">
             A senha é obrigatória
@@ -37,7 +37,7 @@
         <mat-error *ngIf="loginInvalid">
           {{ loginErroMensagem }}
         </mat-error>
-        <a href="#" class="reset-password">Esqueceu sua Senha?</a>
+        <a class="reset-password" href="#">Esqueceu sua Senha?</a>
         <button class="button" type="submit">Entrar</button>
       </form>
 
@@ -47,6 +47,6 @@
     </div>
   </div>
   <div class="cover">
-    <img [ngSrc]="coverUrl" fill />
+    <img [ngSrc]="coverUrl" fill/>
   </div>
 </div>

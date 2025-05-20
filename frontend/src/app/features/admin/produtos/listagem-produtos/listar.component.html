@@ -9,75 +9,75 @@
   <div class="actions-header">
     <mat-form-field class="container-buscar">
       <input
+        [formControl]="filtroControl"
+        class="input-buscar-produto"
         matInput
         placeholder="Buscar produto"
-        class="input-buscar-produto"
-        [formControl]="filtroControl"
       />
     </mat-form-field>
 
-    <button mat-raised-button class="botao-adicionar" [routerLink]="['./novo']">
+    <button [routerLink]="['./novo']" class="botao-adicionar" mat-raised-button>
       Adicionar novo produto
     </button>
   </div>
 
   <div class="container-table">
-    <table mat-table [dataSource]="data">
+    <table [dataSource]="data" mat-table>
       @for (coluna of displayedColumns; track coluna) {
-      <ng-container [matColumnDef]="coluna">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ getHeader(coluna) }}
-        </th>
+        <ng-container [matColumnDef]="coluna">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ getHeader(coluna) }}
+          </th>
 
-        <td mat-cell *matCellDef="let produto">
-          @if (coluna === 'acoes') {
-          <button
-            mat-icon-button
-            color="warn"
-            (click)="deletarProduto(produto)"
-          >
-            <div class="icone-delete">
-              <mat-icon fontSet="material-icons-outlined">delete</mat-icon>
-            </div>
-          </button>
-          <button
-            mat-icon-button
-            color="primary"
-            class="icone-edit"
-            [routerLink]="['./editar', produto.id]"
-          >
-            <mat-icon fontSet="material-icons-outlined">edit</mat-icon>
-          </button>
+          <td mat-cell *matCellDef="let produto">
+            @if (coluna === 'acoes') {
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deletarProduto(produto)"
+              >
+                <div class="icone-delete">
+                  <mat-icon fontSet="material-icons-outlined">delete</mat-icon>
+                </div>
+              </button>
+              <button
+                mat-icon-button
+                color="primary"
+                class="icone-edit"
+                [routerLink]="['./editar', produto.id]"
+              >
+                <mat-icon fontSet="material-icons-outlined">edit</mat-icon>
+              </button>
 
-          } @else {
-          <ng-container *ngIf="coluna === 'criadoEm'; else checkPrice">
-            {{ produto[coluna] | date : "dd/MM/yyyy HH:mm" }}
-          </ng-container>
-          <ng-template #checkPrice>
-            <ng-container *ngIf="coluna === 'precoUnidade'; else normalCell">
-              {{
-                produto[coluna]
-                  | currency : "BRL" : "symbol" : "1.2-2" : "pt-BR"
-              }}
-            </ng-container>
-          </ng-template>
-          <ng-template #normalCell>
-            {{ produto[coluna] }}
-          </ng-template>
-          }
-        </td>
-      </ng-container>
+            } @else {
+              <ng-container *ngIf="coluna === 'criadoEm'; else checkPrice">
+                {{ produto[coluna] | date : "dd/MM/yyyy HH:mm" }}
+              </ng-container>
+              <ng-template #checkPrice>
+                <ng-container *ngIf="coluna === 'precoUnidade'; else normalCell">
+                  {{
+                    produto[coluna]
+                      | currency : "BRL" : "symbol" : "1.2-2" : "pt-BR"
+                  }}
+                </ng-container>
+              </ng-template>
+              <ng-template #normalCell>
+                {{ produto[coluna] }}
+              </ng-template>
+            }
+          </td>
+        </ng-container>
       }
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
     </table>
     <div class="container-mat-paginator">
       <mat-paginator
-        class="mat-paginator"
         [length]="totalItems"
         [pageSize]="pageSize"
         aria-label="Select page"
+        class="mat-paginator"
       >
       </mat-paginator>
     </div>

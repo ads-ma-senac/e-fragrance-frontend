@@ -1,13 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from '@angular/router';
 
-import { CadastrarComponent } from './cadastrar/cadastrar.component';
-import { ListarComponent } from './listagem-produtos/listar.component';
-import { EditarComponent } from './editar/editar.component';
-import { AdminDashboardLayoutComponent } from '../../../shared/layout/admin-dashboard-layout/admin-dashboard-layout.component';
+import {CadastrarComponent} from './cadastrar/cadastrar.component';
+import {ListarComponent} from './listagem-produtos/listar.component';
+import {EditarComponent} from './editar/editar.component';
+import {
+  AdminDashboardLayoutComponent
+} from '@shared/layout/admin-dashboard-layout/admin-dashboard-layout.component';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -34,9 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -48,4 +48,5 @@ const routes: Routes = [
     AdminDashboardLayoutComponent
   ]
 })
-export class ProdutosModule { }
+export class ProdutosModule {
+}

@@ -1,10 +1,10 @@
-import { Injectable, signal } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
+import {Injectable, signal} from '@angular/core';
+import {Observable, catchError, map, of} from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Token } from '../models/token.model';
-import { Usuario } from '../models/usuario.model';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {Token} from '@core/models/token.model';
+import {Usuario} from '@core/models/usuario.model';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +37,7 @@ export class AuthService {
 
   login(email: string, senha: string): Observable<{ erro?: string }> {
     return this.http
-      .get<Usuario[]>(`${this.baseUrl}`, { params: { email } })
+      .get<Usuario[]>(`${this.baseUrl}`, {params: {email}})
       .pipe(
         map((users) => {
           const user = users.find(
@@ -48,7 +48,7 @@ export class AuthService {
             const expired = new Date();
             expired.setMinutes(2);
 
-            const token: Token = { createdAt: new Date(), expiredAt: expired, userId: user?.email }
+            const token: Token = {createdAt: new Date(), expiredAt: expired, userId: user?.email}
             localStorage.setItem("token", JSON.stringify(token))
 
             this.setUsuario(user);
@@ -56,17 +56,17 @@ export class AuthService {
             return {};
           }
 
-          return { erro: 'Usuário ou senha inválidos' };
+          return {erro: 'Usuário ou senha inválidos'};
         }),
         catchError(() => {
-          return of({ erro: 'Erro ao tentar fazer login' });
+          return of({erro: 'Erro ao tentar fazer login'});
         })
       );
   }
 
   logout() {
     localStorage.setItem(this.localStorageKey, '');
-    return of({ messagem: 'Sessão encerrada com sucesso' });
+    return of({messagem: 'Sessão encerrada com sucesso'});
   }
 
   isLoggedIn(): boolean {

@@ -1,13 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
-import { Produto } from '../../../../../core/models/produto.model';
-import { CarrinhoService } from '../../../../../core/services/carrinho.service';
+import { Produto } from '@core/models/produto.model';
+import { CarrinhoService } from '@core/services/carrinho.service';
 import { CarrinhoComponent } from '../carrinho/carrinho.component';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
+  imports: [NgOptimizedImage],
   styleUrl: './card.component.css',
 })
 export class CardComponent implements OnInit {
@@ -17,16 +19,7 @@ export class CardComponent implements OnInit {
 
   constructor(private carrinhoService: CarrinhoService, private dialog: MatDialog) { }
 
-  openSidebar() {
-    this.dialog.open(CarrinhoComponent, {
-      panelClass: 'sidebar-dialog-panel',
-      position: { right: '0' },
-      height: '100vh',
-      width: '350px',
-      autoFocus: false,
-      hasBackdrop: true
-    });
-  }
+
 
   getDescription() {
     if (this.produto.descricao.length > 100) {
@@ -44,7 +37,19 @@ export class CardComponent implements OnInit {
     }
   }
 
+  openSidebar() {
+    this.dialog.open(CarrinhoComponent, {
+      panelClass: 'sidebar-dialog-panel',
+      position: {right: '0'},
+      height: '100vh',
+      width: '350px',
+      autoFocus: false,
+      hasBackdrop: true
+    });
+  }
+
   adicionarAoCarrinho() {
     this.carrinhoService.adicionarAoCarrinho(this.produto)
+    this.openSidebar()
   }
 }

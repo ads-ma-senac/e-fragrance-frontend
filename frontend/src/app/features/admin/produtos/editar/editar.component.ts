@@ -1,22 +1,22 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {Component, OnInit, inject} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { Produto } from '../../../../core/models/produto.model';
-import { ProdutoService } from '../../../../core/services/produto.service';
-import { ImageUploadCardComponent } from '../../../../shared/components/image-upload-card/image-upload-card.component';
-import { ProdutoConstants } from '../constants/produto.constants';
+import {CommonModule} from '@angular/common';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {Produto} from '@core/models/produto.model';
+import {ProdutoService} from '@core/services/produto.service';
+import {ImageUploadCardComponent} from '@shared/components/image-upload-card/image-upload-card.component';
+import {ProdutoConstants} from '@features/admin/produtos/constants/produto.constants';
 
 @Component({
   selector: 'app-editar-produto',
@@ -153,7 +153,7 @@ export class EditarComponent implements OnInit {
 
   handleImageChange(file: File | null): void {
     if (file) {
-      this.produtoForm.patchValue({ imagem: file });
+      this.produtoForm.patchValue({imagem: file});
     }
   }
 }

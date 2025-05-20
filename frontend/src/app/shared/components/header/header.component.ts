@@ -1,13 +1,17 @@
-import { NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { CarrinhoService } from '../../../core/services/carrinho.service';
+import {NgOptimizedImage} from '@angular/common';
+import {Component} from '@angular/core';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {CarrinhoService} from '@core/services/carrinho.service';
+import {MatDialog} from '@angular/material/dialog';
+import {CarrinhoComponent} from '@features/shop/home/components/carrinho/carrinho.component';
+import {MatAnchor} from '@angular/material/button';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatToolbarModule, MatIconModule, NgOptimizedImage],
+  imports: [MatToolbarModule, MatIconModule, NgOptimizedImage, MatAnchor, MatBadgeModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -16,12 +20,30 @@ export class HeaderComponent {
   searchIcon = 'assets/icons/search.svg';
   shoppingBagIcon = 'assets/icons/shopping-bag.svg';
   userIcon = 'assets/icons/user.svg';
-  starIcon = 'assets/icons/star.svg';
 
+  constructor(private dialog: MatDialog, private carrinhoService: CarrinhoService) {
+  }
 
-  constructor(private carrinhoService: CarrinhoService) { }
+  openSidebar() {
+    this.dialog.open(CarrinhoComponent, {
+      panelClass: 'sidebar-dialog-panel',
+      position: {right: '0'},
+      height: '100vh',
+      width: '350px',
+      autoFocus: false,
+      hasBackdrop: true
+    });
+  }
+
+  toggleBadgeVisibility() {
+    return this.carrinhoService.carrinhoVazio()
+  }
 
   mostrarSacola() {
-    this.carrinhoService.toggleCarrinho()
+    this.openSidebar();
+  }
+
+  totalDeItensNoCarrinho() {
+    return this.carrinhoService.totalItems()
   }
 }

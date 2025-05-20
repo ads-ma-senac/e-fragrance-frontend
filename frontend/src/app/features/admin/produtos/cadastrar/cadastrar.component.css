@@ -1,176 +1,176 @@
 .container-cadastro {
-    padding: 8px 32px;
-    height: 100%;
-    width: 100%;
+  padding: 8px 32px;
+  height: 100%;
+  width: 100%;
 
 }
 
 .produtos-container-name h1 {
-    font-size: 30px;
-    font-weight: 600;
-    color: #151515;
+  font-size: 30px;
+  font-weight: 600;
+  color: #151515;
 }
 
 .cadastrar-container-name {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .cadastrar-container-name p {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333333;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
 }
 
 .botao-cancelar {
-    border-radius: 0%;
-    border: 1px solid;
-    box-shadow: none;
-    padding: 25px 20px;
-    background-color: white !important;
-    color: black !important;
-    font-size: 16px;
-    font-weight: 400;
+  border-radius: 0%;
+  border: 1px solid;
+  box-shadow: none;
+  padding: 25px 20px;
+  background-color: white !important;
+  color: black !important;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .botao-salvar {
-    border-radius: 0%;
-    box-shadow: none;
-    padding: 25px 20px;
-    background-color: black !important;
-    color: white !important;
-    font-size: 16px;
-    font-weight: 400;
+  border-radius: 0%;
+  box-shadow: none;
+  padding: 25px 20px;
+  background-color: black !important;
+  color: white !important;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .form-container {
-    display: grid;
+  display: grid;
 
 }
 
 .container-form {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    padding: 12px;
-    background-color: #fff;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  padding: 12px;
+  background-color: #fff;
 }
 
 .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 12px;
 }
 
 .form-column {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .form-column label {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 mat-form-field {
-    width: 100%;
-    border-radius: 0px !important;
+  width: 100%;
+  border-radius: 0px !important;
 }
 
 .actions-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .botoes {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: 12px;
 }
 
 .full-width {
-    width: 100%;
+  width: 100%;
 }
 
 ::ng-deep .mdc-text-field--outlined .mat-mdc-form-field-infix,
 .mdc-text-field--no-label .mat-mdc-form-field-infix {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 mat-form-field textarea {
-    resize: none;
-    height: 100px;
-    line-height: 1.5;
+  resize: none;
+  height: 100px;
+  line-height: 1.5;
 }
 
 .label-imagens-nome {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .upload-label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .upload-label:hover {
-    border-color: #999;
+  border-color: #999;
 }
 
 ::ng-deep div.mat-mdc-select-panel {
-    border-radius: 0px !important;
-    background-color: white !important;
+  border-radius: 0px !important;
+  background-color: white !important;
 }
 
 ::ng-deep div.mat-mdc-select-panel:hover {
-    background-color: #f0f0f0 !important;
+  background-color: #f0f0f0 !important;
 }
 
 
 .erro-global {
-    background-color: rgba(255, 0, 0, 0.05);
-    border-radius: 4px;
-    padding: 0px 16px 16px;
-    margin-bottom: 20px;
-    border-left: 4px solid #f44336;
+  background-color: rgba(255, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 0px 16px 16px;
+  margin-bottom: 20px;
+  border-left: 4px solid #f44336;
 }
 
 .erro-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .erro-header mat-icon {
-    color: #f44336;
-    margin-right: 8px;
+  color: #f44336;
+  margin-right: 8px;
 }
 
 .erro-header span {
-    font-weight: 500;
-    font-size: 16px;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 mat-form-field input[type="number"]::-webkit-inner-spin-button,
 mat-form-field input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .form-input {
-    border-radius: 0;
+  border-radius: 0;
 }
 
 
 .form-column.description,
 .form-column.description .full-width {
-    height: 100%;
+  height: 100%;
 }

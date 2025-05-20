@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { ProfileComponent } from '../profile/profile.component';
-import { RouterModule } from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {Component} from '@angular/core';
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {ProfileComponent} from '../profile/profile.component';
+import {RouterModule} from '@angular/router';
 
 type link = { path: string; label: string };
 

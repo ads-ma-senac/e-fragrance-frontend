@@ -1,6 +1,6 @@
-<mat-toolbar color="primary" class="header-toolbar">
+<mat-toolbar class="header-toolbar" color="primary">
   <div class="logo">
-    <img [ngSrc]="fragranceUrl" width="157" height="45" />
+    <img [ngSrc]="fragranceUrl" height="45" width="157" alt=""/>
   </div>
   <nav>
     <a href="#" mat-button>LANÇAMENTOS</a>
@@ -9,11 +9,17 @@
     <a href="#" mat-button>SOBRE</a>
   </nav>
   <div class="nav-actions">
-    <a href="#"> <img [src]="searchIcon" class="nav-icon" /></a>
-    <a href="/admin/login"> <img [src]="userIcon" class="nav-icon" /></a>
-    <button (click)="mostrarSacola()">
-      <img [src]="shoppingBagIcon" class="nav-icon" />
+    <a href="#"> <img [ngSrc]="searchIcon" class="nav-icon" alt="" width="20" height="20"/></a>
+    <a href="/admin/login"> <img [ngSrc]="userIcon" class="nav-icon" alt="" width="20" height="20"/></a>
+    <button class="add-shoppingcart" (click)="mostrarSacola()">
+      @if (totalDeItensNoCarrinho() > 0) {
+        <div [matBadge]="totalDeItensNoCarrinho()"  class="demo-section">
+          <img [ngSrc]="shoppingBagIcon" class="nav-icon" width="20" height="20" alt=""/>
+        </div>
+      }
+      @else {
+        <img [ngSrc]="shoppingBagIcon" class="nav-icon" width="20" height="20" alt=""/>
+      }
     </button>
-    <!-- <a href="#"> </a> -->
   </div>
 </mat-toolbar>

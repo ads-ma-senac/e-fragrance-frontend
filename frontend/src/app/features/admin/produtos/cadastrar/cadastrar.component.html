@@ -1,132 +1,134 @@
 <div class="container-cadastro">
-    <div class="produtos-container-name">
-        <h1>Produtos</h1>
-    </div>
+  <div class="produtos-container-name">
+    <h1>Produtos</h1>
+  </div>
 
-    <div>
-        <form [formGroup]="produtoForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="produtoForm" class="form-container">
 
-            <div *ngIf="formSubmitted && produtoForm.invalid" class="erro-global">
-                <mat-error>
-                    <div class="erro-header">
-                        <mat-icon>error</mat-icon>
-                        <span>Formulário incompleto</span>
-                    </div>
-                    <p>Por favor, preencha todos os campos obrigatórios antes de salvar.</p>
-                </mat-error>
+      <div *ngIf="formSubmitted && produtoForm.invalid" class="erro-global">
+        <mat-error>
+          <div class="erro-header">
+            <mat-icon>error</mat-icon>
+            <span>Formulário incompleto</span>
+          </div>
+          <p>Por favor, preencha todos os campos obrigatórios antes de salvar.</p>
+        </mat-error>
+      </div>
+
+      <div class="actions-header">
+        <div class="cadastrar-container-name">
+          <p>Cadastrar novo perfume</p>
+        </div>
+        <div class="botoes">
+          <button (click)="cancelarEdicao()" [routerLink]="['admin/produtos']" class="botao-cancelar" mat-raised-button
+                  type="button">
+            Cancelar
+          </button>
+          <button class="botao-salvar" mat-raised-button type="submit">
+            Salvar produto
+          </button>
+        </div>
+      </div>
+
+      <div class="container-form">
+        <div class="container-primeiro-cadastro">
+          <div class="form-row">
+            <div class="form-column">
+              <label>Nome do Perfume</label>
+              <mat-form-field appearance="outline" class="form-field">
+                <input class="form-input" formControlName="nome" matInput placeholder="ex. Carbon"/>
+              </mat-form-field>
+            </div>
+            <div class="form-column">
+              <label>Marca</label>
+              <mat-form-field appearance="outline">
+                <input formControlName="marca" matInput placeholder="ex. Eudora"/>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-column">
+              <label>Gênero</label>
+              <mat-form-field appearance="outline">
+                <mat-select formControlName="genero" placeholder="Selecione o gênero">
+                  <mat-option *ngFor="let g of generos" [value]="g">{{ g }}</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
 
-            <div class="actions-header">
-                <div class="cadastrar-container-name">
-                    <p>Cadastrar novo perfume</p>
-                </div>
-                <div class="botoes">
-                    <button mat-raised-button class="botao-cancelar" type="button" (click)="cancelarEdicao()"
-                        [routerLink]="['admin/produtos']">
-                        Cancelar
-                    </button>
-                    <button mat-raised-button type="submit" class="botao-salvar">
-                        Salvar produto
-                    </button>
-                </div>
+
+            <div class="form-column">
+              <label>Categoria</label>
+              <mat-form-field appearance="outline">
+                <mat-select formControlName="categoria" placeholder="Seleciona uma categoria">
+                  <mat-option *ngFor="let c of categorias" [value]="c">{{ c }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-column">
+              <label>Volume (ml)</label>
+              <mat-form-field appearance="outline">
+                <input formControlName="volume" matInput placeholder="ex. 100" type="number"/>
+              </mat-form-field>
             </div>
 
-            <div class="container-form">
-                <div class="container-primeiro-cadastro">
-                    <div class="form-row">
-                        <div class="form-column">
-                            <label>Nome do Perfume</label>
-                            <mat-form-field appearance="outline" class="form-field">
-                                <input matInput formControlName="nome" placeholder="ex. Carbon" class="form-input" />
-                            </mat-form-field>
-                        </div>
-                        <div class="form-column">
-                            <label>Marca</label>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="marca" placeholder="ex. Eudora" />
-                            </mat-form-field>
-                        </div>
-                    </div>
 
-                    <div class="form-row">
+            <div class="form-column">
+              <label>Concentração</label>
+              <mat-form-field appearance="outline">
+                <mat-select formControlName="concentracao" placeholder="Selecione a concentração">
+                  <mat-option *ngFor="let conc of concentracoes" [value]="conc">{{
+                      conc
+                    }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
 
-                        <div class="form-column">
-                            <label>Gênero</label>
-                            <mat-form-field appearance="outline">
-                                <mat-select formControlName="genero" placeholder="Selecione o gênero">
-                                    <mat-option *ngFor="let g of generos" [value]="g">{{ g }}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+          <div class="form-row">
+
+            <div class="form-column">
+              <label>Preço</label>
+              <mat-form-field appearance="outline">
+                <input formControlName="preco" matInput placeholder="R$ 0.00" type="number"/>
+              </mat-form-field>
+            </div>
 
 
-                        <div class="form-column">
-                            <label>Categoria</label>
-                            <mat-form-field appearance="outline">
-                                <mat-select formControlName="categoria" placeholder="Seleciona uma categoria">
-                                    <mat-option *ngFor="let c of categorias" [value]="c">{{ c }}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>
+            <div class="form-column">
+              <label>Quantidade em estoque</label>
+              <mat-form-field appearance="outline">
+                <input formControlName="estoque" matInput placeholder="ex. 10 unidades"/>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
 
-                    <div class="form-row">
-
-                        <div class="form-column">
-                            <label>Volume (ml)</label>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="volume" type="number" placeholder="ex. 100" />
-                            </mat-form-field>
-                        </div>
-
-
-                        <div class="form-column">
-                            <label>Concentração</label>
-                            <mat-form-field appearance="outline">
-                                <mat-select formControlName="concentracao" placeholder="Selecione a concentração">
-                                    <mat-option *ngFor="let conc of concentracoes" [value]="conc">{{ conc
-                                        }}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-
-                        <div class="form-column">
-                            <label>Preço</label>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="preco" type="number" placeholder="R$ 0.00" />
-                            </mat-form-field>
-                        </div>
-
-
-                        <div class="form-column">
-                            <label>Quantidade em estoque</label>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="estoque" placeholder="ex. 10 unidades" />
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-column description">
-                        <label>Descrição</label>
-                        <mat-form-field appearance="outline" class="full-width">
-                            <textarea matInput formControlName="descricao" placeholder="ex. Carbon Turbo de Eudora é um perfume Amadeirado Masculino. Carbon Turbo foi lançada em 2014
+        <div class="form-row">
+          <div class="form-column description">
+            <label>Descrição</label>
+            <mat-form-field appearance="outline" class="full-width">
+                            <textarea formControlName="descricao" matInput placeholder="ex. Carbon Turbo de Eudora é um perfume Amadeirado Masculino. Carbon Turbo foi lançada em 2014
                         " rows="4"></textarea>
-                        </mat-form-field>
-                    </div>
+            </mat-form-field>
+          </div>
 
-                    <div class="form-column upload-section">
-                        <div class="label-imagens-nome">
-                            <label>Imagens do Perfume</label>
-                        </div>
-                        <app-image-upload-card (imageChange)="handleImageChange($event)"></app-image-upload-card>
-                    </div>
-                </div>
+          <div class="form-column upload-section">
+            <div class="label-imagens-nome">
+              <label>Imagens do Perfume</label>
             </div>
-        </form>
-    </div>
+            <app-image-upload-card (imageChange)="handleImageChange($event)"></app-image-upload-card>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

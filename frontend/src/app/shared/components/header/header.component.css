@@ -9,7 +9,7 @@
 }
 
 .logo {
-  height: 32.22px;
+  height: 32px;
   width: 112px;
 }
 
@@ -36,18 +36,21 @@ mat-icon {
   gap: 8px;
 }
 
-.nav-actions .nav-icon {
+.nav-actions .nav-icon,.add-shoppingcart {
   width: 20px;
   height: 20px;
 }
 
-.nav-actions a {
+.nav-actions a,.add-shoppingcart {
   padding: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border:none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.nav-actions a:hover {
+.nav-actions a:hover,.add-shoppingcart:hover {
   transform: scale(1.1);
 }

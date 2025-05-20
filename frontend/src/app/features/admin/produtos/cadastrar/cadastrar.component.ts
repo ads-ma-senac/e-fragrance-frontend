@@ -4,18 +4,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { ProdutoService } from '../../../../core/services/produto.service';
-import { ImageUploadCardComponent } from '../../../../shared/components/image-upload-card/image-upload-card.component';
-import { ProdutoConstants } from '../constants/produto.constants';
+import {CommonModule} from '@angular/common';
+import {Component} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {ProdutoService} from '@core/services/produto.service';
+import {ImageUploadCardComponent} from '@shared/components/image-upload-card/image-upload-card.component';
+import {ProdutoConstants} from '@features/admin/produtos/constants/produto.constants';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -88,7 +88,7 @@ export class CadastrarComponent {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    this.produtoForm.patchValue({ imagem: file });
+    this.produtoForm.patchValue({imagem: file});
   }
 
   cancelarEdicao() {
@@ -97,7 +97,7 @@ export class CadastrarComponent {
 
   handleImageChange(file: File | null): void {
     if (file) {
-      this.produtoForm.patchValue({ imagem: file });
+      this.produtoForm.patchValue({imagem: file});
     }
   }
 }

@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, from, map, switchMap } from 'rxjs';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable, from, map, switchMap} from 'rxjs';
 
-import { Injectable } from '@angular/core';
-import { Produto } from '../models/produto.model';
+import {Injectable} from '@angular/core';
+import {Produto} from '@core/models/produto.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,8 @@ import { Produto } from '../models/produto.model';
 export class ProdutoService {
   private baseUrl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   listar(
     pageIndex: number = 0,

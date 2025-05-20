@@ -1,0 +1,27 @@
+.input-counter {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  place-items: center;
+  width: 100px;
+  padding: 2px 4px;
+}
+
+.input-counter span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button svg {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

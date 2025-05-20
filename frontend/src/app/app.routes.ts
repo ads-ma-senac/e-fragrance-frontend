@@ -1,13 +1,12 @@
-
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
-    path:"admin",
+    path: "admin",
     loadChildren: () => import("./features/admin/admin.module").then(m => m.AdminModule),
   },
   {
-    path:"",
+    path: "",
     loadChildren: () => import("./features/shop/shop.module").then(m => m.ShopModule),
   }
 ];

@@ -76,3 +76,25 @@ tbody td.mdc-data-table__cell {
 .mdc-text-field--outlined {
   --mdc-outlined-text-field-container-shape: 0 !important;
 }
+
+.sidebar-dialog-panel {
+  width: 500px !important;
+  position: fixed !important;
+  right: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  height: 100vh !important;
+}
+
+.sidebar-dialog-panel .mat-mdc-dialog-surface {
+  border-radius: 0 !important;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sidebar-dialog-panel .mat-mdc-dialog-container {
+  padding: 0 !important;
+}
+
+.cdk-overlay-backdrop.sidebar-dialog-backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}

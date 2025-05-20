@@ -1,8 +1,8 @@
-import { RouterModule, Routes } from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
-import { LoginGuard } from '../../../core/guards/login.guard';
-import { NgModule } from '@angular/core';
+import {LoginComponent} from '@features/admin/auth/login/login.component';
+import {LoginGuard} from '@core/guards/login.guard';
+import {NgModule} from '@angular/core';
 
 const routes: Routes = [
   {
@@ -17,4 +17,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AuthModule {}
+export class AuthModule {
+}

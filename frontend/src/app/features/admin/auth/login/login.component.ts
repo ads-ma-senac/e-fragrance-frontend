@@ -1,16 +1,16 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {Component} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatError, MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { AuthService } from '../../../../core/services/auth.service';
+import {MatButtonModule} from '@angular/material/button';
+import {MatError, MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {AuthService} from '@core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -43,7 +43,8 @@ export class LoginComponent {
     ]),
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+  }
 
   handleSubmit() {
     if (this.loginForm.invalid) {
@@ -51,7 +52,7 @@ export class LoginComponent {
       return;
     }
 
-    const { email, password } = this.loginForm.value;
+    const {email, password} = this.loginForm.value;
 
     if (email && password) {
       this.authService

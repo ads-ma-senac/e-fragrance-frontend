@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject} from '@angular/core';
 
-import { AuthService } from '../../../core/services/auth.service';
-import { CommonModule } from '@angular/common';
+import {AuthService} from '@core/services/auth.service';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-profile',
