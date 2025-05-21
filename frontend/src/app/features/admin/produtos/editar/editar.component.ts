@@ -80,7 +80,7 @@ export class EditarComponent implements OnInit {
   carregarProduto() {
     this.produtoService.buscarPorId(this.id).subscribe({
       next: (produto) => {
-        ('Produto carregado:', produto);
+        
         this.produtoOriginal = produto;
 
         this.produtoForm.patchValue({
