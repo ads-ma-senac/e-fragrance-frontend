@@ -45,13 +45,13 @@ export class AuthService {
           );
 
           if (user) {
-            const expired = new Date();
-            expired.setMinutes(2);
+            const expired = new Date(new Date().getTime() + 2 *60000);
 
             const token: Token = {createdAt: new Date(), expiredAt: expired, userId: user?.email}
             localStorage.setItem("token", JSON.stringify(token))
 
             this.setUsuario(user);
+            ("chegando aqui");
             this.router.navigate(['/admin/produtos']);
             return {};
           }
@@ -80,7 +80,6 @@ export class AuthService {
     const tokenParsed: Token = JSON.parse(token)
 
     const expiredDate = new Date(tokenParsed.expiredAt)
-
     if (expiredDate.getTime() < new Date().getTime()) {
       return false;
     }
